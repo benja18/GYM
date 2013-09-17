@@ -10,8 +10,7 @@
         <title>GYM</title>
 
         <!-- Bootstrap core CSS -->     
-        <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
-        <link href="<?php echo base_url('assets/dataTables/media/css/jquery.dataTables.css') ?>" rel="stylesheet">        
+        <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">        
     </head>
     <body class="bs-docs-home">        
         <div class="navbar">
