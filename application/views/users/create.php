@@ -37,17 +37,17 @@
     </div>
     <div class="span6"/>    
 </div>
-<?php //if ($data['status'] == 'UserInserted') { ?>
-    <div id="modalSuccess" class="modal hide fade in" aria-hidden="false" style="display: block;">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Usuario creado</h3>
-        </div>
-        <div class="modal-body">    
-        </div>
-        <div class="modal-footer">
-            <a href="#" class="btn">Close</a>
-            <a href="#" class="btn btn-primary">Save changes</a>
-        </div>
+<?php if ($data['status'] == 'UserInserted') { ?>
+<div class="modal hide fade in" style="display: block; ">
+    <div class="modal-header">        
+        <h3>Mensaje</h3>
     </div>
-    <?php //} ?>  
+    <div class="modal-body">
+        <h4>Usuario creado</h4>
+    </div>
+    <div class="modal-footer">
+        <a href="<?php echo base_url('') ?>" class="btn btn-primary">Aceptar</a>        
+    </div>
+</div>
+<div class="modal-backdrop fade in"></div>
+<?php } ?>  

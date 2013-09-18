@@ -10,7 +10,11 @@
         <title>GYM</title>
 
         <!-- Bootstrap core CSS -->     
-        <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">        
+        <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/datatable.css') ?>" rel="stylesheet">
+        <script src="<?php echo base_url('assets/js/jquery.js') ?>"></script>
+        <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
+        <script src="<?php echo base_url('assets/js/datatable.js') ?>"></script>
     </head>
     <body class="bs-docs-home">        
         <div class="navbar">
@@ -42,9 +46,6 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="navbar-search pull-right" action="">
-                    <input type="text" class="search-query span2" placeholder="Search">
-                </form>
                 <ul class="nav pull-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i><b class="caret"></b></a>                                
