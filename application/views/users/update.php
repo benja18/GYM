@@ -1,13 +1,13 @@
 <div class="row-fluid">
     <br><br>
     <div class="span6 offset1">        
-        <?php
-        echo validation_errors();
-        $attributes = array('role' => 'form', 'class' => 'span4', 'id' => 'myform', 'name' => 'update');
+        <?php        
+        $attributes = array('role' => 'form', 'class' => 'span4', 'id' => 'myform', 'name' => 'update', 'action' => '');
         ?>
         <?php echo form_open('users/update', $attributes); ?>
-        <legend>Actualizar usuario</legend>        
-        <input name="username" type="text" placeholder="Nombre de usuario">        
+        <legend>Actualizar usuario</legend>
+        <input name="user_id" type="hidden" placeholder="User Id" value="<?php if ($data['status'] != 'UserInserted') {echo $_GET['user_id']; }?>">        
+        <input name="username" type="text" placeholder="Nombre de usuario" value="<?php if ($data['status'] != 'UserInserted') {echo $data['username']; }?>">
         <input name="password" type="password" placeholder="Contraseña">
         <input name="passwordCheck" type="password" placeholder="Repita contraseña">
         <br><br>

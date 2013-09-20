@@ -10,7 +10,7 @@ class Users extends CI_Controller {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $this->load->helper('form','users/create');
+            $this->load->helper('form', 'users/create');
             $this->load->library('form_validation');
             $this->form_validation->set_rules('username', 'Username', 'required');
             $this->form_validation->set_rules('password', 'Password', 'required');
@@ -18,7 +18,7 @@ class Users extends CI_Controller {
 
             if ($this->form_validation->run() === FALSE) {
                 $data['status'] = 'ValidationError';
-                //$this->load->helper('url');
+
                 $this->load->view('templates/header');
                 $this->load->helper('form');
                 $this->load->view('users/create', array('data' => $data));
@@ -28,22 +28,20 @@ class Users extends CI_Controller {
                 $data['username'] = $_POST['username'];
                 $data['password'] = $_POST['password'];
 
-                $passwordCheck = $_POST['passwordCheck'];
-
-                if ($data['password'] == $passwordCheck) {
+                if ($data['password'] == $_POST['passwordCheck']) {
                     //llamamos al modelo, concretamente a la función insert() para que nos haga el insert en la base de datos.
                     $this->load->model('user');
                     $this->user->insert($data);
-                    if($this->db->_error_number() == 1062){
+                    if ($this->db->_error_number() == 1062) {
                         $data['status'] = 'UsernameDuplicated';
-                    }   else{
-                            $data['status'] = 'UserInserted';
-                    }                  
-                    
+                    } else {
+                        $data['status'] = 'UserInserted';
+                    }
+
                     $this->load->view('templates/header');
                     $this->load->helper('form');
                     $this->load->view('users/create', array('data' => $data));
-                    $this->load->view('templates/footer');                    
+                    $this->load->view('templates/footer');
                 } else {
                     $data['status'] = 'WrongPasswords';
                     $this->load->view('templates/header');
@@ -76,8 +74,6 @@ class Users extends CI_Controller {
 
     public function update() {
 
-        $status['status'] = "";
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $this->load->helper('form');
@@ -86,32 +82,51 @@ class Users extends CI_Controller {
             $this->form_validation->set_rules('password', 'Password', 'required');
 
             if ($this->form_validation->run() === FALSE) {
-                $status['status'] = 'Missing Text';
-                $this->load->helper('url');
-                redirect('users/create');
+                $data['status'] = 'ValidationError';
+
+                $this->load->model('user');
+                $data = $this->user->getById($_POST['user_id']);
+
+                $this->load->view('templates/header');
+                $this->load->helper('form');
+                $this->load->view('users/update', array('data' => $data));
+                $this->load->view('templates/footer');
             } else {
-                //recogemos los datos obtenidos por POST
+
                 $data['username'] = $_POST['username'];
                 $data['password'] = $_POST['password'];
 
-                try {
-                    //llamamos al modelo, concretamente a la función insert() para que nos haga el insert en la base de datos.
+                if ($data['password'] == $_POST['passwordCheck']) {
                     $this->load->model('user');
-                    $this->user->insert($data);
-                } catch (Exception $exc) {
-                    if ($this->db->_error_number() == 1062) {
-                        echo'usuario ya existe';
-                    }
-                }
+                    $this->user->update($_POST['user_id'], $data);
 
-                $this->load->helper('url');
-                redirect('');
+                    if ($this->db->_error_number() == 1062) {
+                        $data['status'] = 'UsernameDuplicated';
+                    } else {
+                        $data['status'] = 'UserInserted';
+                    }
+
+                    $this->load->view('templates/header');
+                    $this->load->helper('form');
+                    $this->load->view('users/update', array('data' => $data));
+                    $this->load->view('templates/footer');
+                } else {
+                    
+                    $data['status'] = 'WrongPasswords';
+                    $this->load->view('templates/header');
+                    $this->load->helper('form');
+                    $this->load->view('users/update', array('data' => $data));
+                    $this->load->view('templates/footer');
+                }
             }
         } else {
-
+            
+            $this->load->model('user');
+            $data = $this->user->getById($_GET['user_id']);
+            $data['status'] = "";
             $this->load->view('templates/header');
             $this->load->helper('form');
-            $this->load->view('users/update');
+            $this->load->view('users/update', array('data' => $data));
             $this->load->view('templates/footer');
         }
     }

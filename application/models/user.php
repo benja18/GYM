@@ -17,5 +17,16 @@ class User extends CI_Model {
         $this->db->set('password', $data['password']);
         $this->db->insert('users');
     }
-
+    
+    function update($id, $data) {
+        $this->db->where('user_id', $id);
+        $this->db->update('users',$data);        
+    }
+    
+    function getById($id) {
+        $this->db->where('user_id',$id);
+        $query = $this->db->get('users');
+        $user = $query->result_array();
+        return $user[0];
+    }
 }
