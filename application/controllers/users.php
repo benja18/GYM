@@ -18,7 +18,6 @@ class Users extends CI_Controller {
 
             if ($this->form_validation->run() === FALSE) {
                 $data['status'] = 'ValidationError';
-
                 $this->load->view('templates/header');
                 $this->load->helper('form');
                 $this->load->view('users/create', array('data' => $data));
@@ -51,7 +50,7 @@ class Users extends CI_Controller {
                 }
             }
         } else {
-            $data['status'] = 'Empty';
+            $data['status'] = '';
             $this->load->view('templates/header');
             $this->load->helper('form');
             $this->load->view('users/create', array('data' => $data));
@@ -82,10 +81,12 @@ class Users extends CI_Controller {
             $this->form_validation->set_rules('password', 'Password', 'required');
 
             if ($this->form_validation->run() === FALSE) {
-                $data['status'] = 'ValidationError';
 
                 $this->load->model('user');
                 $data = $this->user->getById($_POST['user_id']);
+
+                $data['status'] = 'ValidationError';
+                $data['user_id'] = $_POST['user_id'];
 
                 $this->load->view('templates/header');
                 $this->load->helper('form');
@@ -95,6 +96,7 @@ class Users extends CI_Controller {
 
                 $data['username'] = $_POST['username'];
                 $data['password'] = $_POST['password'];
+                $data['user_id'] = $_POST['user_id'];
 
                 if ($data['password'] == $_POST['passwordCheck']) {
                     $this->load->model('user');
@@ -103,7 +105,7 @@ class Users extends CI_Controller {
                     if ($this->db->_error_number() == 1062) {
                         $data['status'] = 'UsernameDuplicated';
                     } else {
-                        $data['status'] = 'UserInserted';
+                        $data['status'] = 'UserUpdated';
                     }
 
                     $this->load->view('templates/header');
@@ -111,7 +113,7 @@ class Users extends CI_Controller {
                     $this->load->view('users/update', array('data' => $data));
                     $this->load->view('templates/footer');
                 } else {
-                    
+
                     $data['status'] = 'WrongPasswords';
                     $this->load->view('templates/header');
                     $this->load->helper('form');
@@ -120,7 +122,7 @@ class Users extends CI_Controller {
                 }
             }
         } else {
-            
+
             $this->load->model('user');
             $data = $this->user->getById($_GET['user_id']);
             $data['status'] = "";
@@ -129,6 +131,23 @@ class Users extends CI_Controller {
             $this->load->view('users/update', array('data' => $data));
             $this->load->view('templates/footer');
         }
+    }
+
+    public function delete() {
+
+        $this->load->model('user');
+        $id = $_GET['user_id'];
+
+        $this->load->model('user');
+        $this->user->delete($id);        
+        
+        $users = $this->user->getData(); //llamamos a la función getData() del modelo creado anteriormente.
+
+        $data['users'] = $users;        
+        //load de vistas
+        $this->load->view('templates/header');
+        $this->load->view('users/listUsers', array('data' => $data)); //llamada a la vista, que crearemos posteriormente
+        $this->load->view('templates/footer');
     }
 
 }

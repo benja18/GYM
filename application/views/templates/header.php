@@ -27,9 +27,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> Socios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="icon-plus"></i> Agregar socio</a></li>
-                            <li><a href="#"><i class="icon-edit"></i> Modificar socio</a></li>
-                            <li><a href="#"><i class="icon-align-justify"></i> Ver socios</a></li>
+                            <li><a href="#"><i class="icon-plus"></i> Agregar socio</a></li>                            
+                            <li><a href="#"><i class="icon-list"></i> Ver socios</a></li>
                             <li><a href="#"><i class="icon-folder-open"></i> Subscripciones y rutinas</a></li>
                             <li><a href="#"><i class="icon-book"></i> Tipos de subscripciones</a></li>
                         </ul>
@@ -37,12 +36,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-th"></i> Ejercicios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="icon-plus"></i> Agregar musculo</a></li>
-                            <li><a href="#"><i class="icon-edit"></i> Modificar musculo</a></li>
-                            <li><a href="#"><i class="icon-trash"></i> Eliminar musculo</a></li>
-                            <li><a href="#"><i class="icon-plus"></i> Agregar ejercicio</a></li>
-                            <li><a href="#"><i class="icon-edit"></i> Modificar ejercicio</a></li>
-                            <li><a href="#"><i class="icon-trash"></i> Eliminar ejercicio</a></li>
+                            <li><a href="<?php echo base_url('muscles/create') ?>"><i class="icon-plus"></i> Agregar musculo</a></li>
+                            <li><a href="<?php echo base_url('muscles/listMuscles') ?>"><i class="icon-list"></i> Ver musculos</a></li>                            
+                            <li><a href="<?php echo base_url('exercises/create') ?>"><i class="icon-plus"></i> Agregar ejercicio</a></li>
+                            <li><a href="#"><i class="icon-list"></i> Ver ejercicios</a></li>
                         </ul>
                     </li>
                 </ul>

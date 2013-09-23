@@ -110,32 +110,32 @@
     } );
 </script>
 <script type="text/javascript">
-    function sendId(user_id){                
-        document.getElementById('modal-footer').innerHTML = "<a href=\"<?php echo base_url('users/delete?user_id=')?>"+user_id+"\" class=\"btn btn-primary\">Si</a><a class=\"btn\" data-dismiss=\"modal\">No</a>"
+    function sendId(muscle_id){                
+        document.getElementById('modal-footer').innerHTML = "<a href=\"<?php echo base_url('muscles/delete?muscle_id=')?>"+muscle_id+"\" class=\"btn btn-primary\">Si</a><a class=\"btn\" data-dismiss=\"modal\">No</a>"
 
         $('#modal-delete').modal("show");
     }
 </script>
 <br><br>
 <div class="row span12 offset2">
-    <legend>Usuarios</legend>
+    <legend>Musculos</legend>
     <br><br>
     <table class="table table-bordered" id="example">
         <thead>
             <tr>               
-                <th>Nombre de Usuario</th>
+                <th>Nombre</th>
                 <th>Acciones</th>              
             </tr>
         </thead>
         <tbody>
-            <?php if (isset($data['users'])) {
-                foreach ($data['users'] as $user) {
+            <?php if (isset($data['muscles'])) {
+                foreach ($data['muscles'] as $muscle) {
                     ?>
                     <tr>                        
-                        <td><strong><?php echo $user->username ?></strong></td>
+                        <td><strong><?php echo $muscle->name ?></strong></td>
                         <td>
-                            <a class="btn btn-primary btn-mini" href="<?php echo base_url('users/update?user_id=').$user->user_id ?>"><i class="icon-edit  icon-white"></i> Editar</a>
-                            <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $user->user_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                            
+                            <a class="btn btn-primary btn-mini" href="<?php echo base_url('muscles/update?muscle_id=').$muscle->muscle_id ?>"><i class="icon-edit  icon-white"></i> Editar</a>
+                            <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $muscle->muscle_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                            
                         </td>                                                
                     </tr>
     <?php } } ?>
@@ -148,7 +148,7 @@
         <h3>Mensaje</h3>
     </div>
     <div class="modal-body">
-        <p>¿Está seguro que desea eliminar el usuario?</p>
+        <p>¿Está seguro que desea eliminar el musculo?</p>
     </div>
     <div id="modal-footer" class="modal-footer">        
     </div>

@@ -23,6 +23,11 @@ class User extends CI_Model {
         $this->db->update('users',$data);        
     }
     
+    function delete($id) {
+        $this->db->where('user_id', $id);
+        $this->db->delete('users');        
+    }
+    
     function getById($id) {
         $this->db->where('user_id',$id);
         $query = $this->db->get('users');
