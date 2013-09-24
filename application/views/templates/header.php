@@ -30,7 +30,8 @@
                             <li><a href="#"><i class="icon-plus"></i> Agregar socio</a></li>                            
                             <li><a href="#"><i class="icon-list"></i> Ver socios</a></li>
                             <li><a href="#"><i class="icon-folder-open"></i> Subscripciones y rutinas</a></li>
-                            <li><a href="#"><i class="icon-book"></i> Tipos de subscripciones</a></li>
+                            <li><a href="<?php echo base_url('subscriptionTypes/create') ?>"><i class="icon-plus"></i> Agregar tipo de subscripcion</a></li>
+                            <li><a href="<?php echo base_url('subscriptionTypes/listSubscriptionTypes') ?>"><i class="icon-book"></i> Ver tipos de subscripciones</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
