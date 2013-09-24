@@ -7,10 +7,9 @@ class Exercises extends CI_Controller {
     }
 
     public function create() {
-        
-        $this->load->model('muscle');
-        $muscles = $this->muscle->getData();
-        $data['muscles'] = $muscles;
+
+        $data['status'] = '';
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $this->load->helper('form', 'exercises/create');
@@ -27,7 +26,7 @@ class Exercises extends CI_Controller {
             } else {
                 $data['name'] = $_POST['name'];
                 $data['muscle_id'] = $_POST['muscle_id'];
-                
+
                 $this->load->model('exercise');
                 $this->exercise->insert($data);
                 if ($this->db->_error_number() == 1062) {
@@ -35,16 +34,17 @@ class Exercises extends CI_Controller {
                 } else {
                     $data['status'] = 'ExerciseInserted';
                 }
-                
-                print_r($data);
-                /*$this->load->view('templates/header');
+
+                $this->load->view('templates/header');
                 $this->load->helper('form');
                 $this->load->view('exercises/create', array('data' => $data));
-                $this->load->view('templates/footer');*/
+                $this->load->view('templates/footer');
             }
         } else {
             $data['status'] = '';
-
+            $this->load->model('muscle');
+            $muscles = $this->muscle->getData();
+            $data['muscles'] = $muscles;
             $this->load->view('templates/header');
             $this->load->helper('form');
             $this->load->view('exercises/create', array('data' => $data));
@@ -104,9 +104,13 @@ class Exercises extends CI_Controller {
             }
         } else {
 
+            $data['status'] = '';
+            $this->load->model('muscle');
+            $muscles = $this->muscle->getData();
+            $data['muscles'] = $muscles;
+
             $this->load->model('exercise');
-            $data = $this->exercise->getById($_GET['exercise_id']);
-            $data['status'] = "";
+            $data['exercise'] = $this->exercise->getById($_GET['exercise_id']);
             $this->load->view('templates/header');
             $this->load->helper('form');
             $this->load->view('exercises/update', array('data' => $data));
@@ -116,11 +120,17 @@ class Exercises extends CI_Controller {
 
     public function delete() {
 
+        $data['status'] = '';
+
         $this->load->model('exercise');
         $id = $_GET['exercise_id'];
 
         $this->load->model('exercise');
         $this->exercise->delete($id);
+
+        if ($this->db->_error_number() == 1451) {
+            $data['status'] = 'CantDelete';
+        }
 
         $exercises = $this->exercise->getData();
 

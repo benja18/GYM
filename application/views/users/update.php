@@ -26,13 +26,13 @@
         $attributes = array('role' => 'form', 'class' => 'span4', 'id' => 'myform', 'name' => 'update', 'action' => '');
         ?>
         <?php echo form_open('users/update', $attributes); ?>
-        <legend>Actualizar usuario</legend>
+        <legend>Editar usuario</legend>
         <input name="user_id" type="hidden" placeholder="User Id" value="<?php if ($data['status'] == '') {echo $_GET['user_id']; } else{ echo $data['user_id']; }?>">        
         <input name="username" type="text" placeholder="Nombre de usuario" value="<?php if ($data['status'] != 'UserUpdated') {echo $data['username']; }?>">
         <input name="password" type="password" placeholder="Contraseña">
         <input name="passwordCheck" type="password" placeholder="Repita contraseña">
         <br><br>
-        <button type="submit" class="btn">Actualiar</button>        
+        <button type="submit" class="btn">Actualizar</button>        
         </form>                
     </div>
     <div class="span6"/>
@@ -43,7 +43,7 @@
         <h3>Mensaje</h3>
     </div>
     <div class="modal-body">
-        <h4>Usuario actualizado</h4>
+        <h4>Usuario editado</h4>
     </div>
     <div class="modal-footer">
         <a href="<?php echo base_url('') ?>" class="btn btn-primary">Aceptar</a>        

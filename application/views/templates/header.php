@@ -39,7 +39,7 @@
                             <li><a href="<?php echo base_url('muscles/create') ?>"><i class="icon-plus"></i> Agregar musculo</a></li>
                             <li><a href="<?php echo base_url('muscles/listMuscles') ?>"><i class="icon-list"></i> Ver musculos</a></li>                            
                             <li><a href="<?php echo base_url('exercises/create') ?>"><i class="icon-plus"></i> Agregar ejercicio</a></li>
-                            <li><a href="#"><i class="icon-list"></i> Ver ejercicios</a></li>
+                            <li><a href="<?php echo base_url('exercises/listExercises') ?>"><i class="icon-list"></i> Ver ejercicios</a></li>
                         </ul>
                     </li>
                 </ul>

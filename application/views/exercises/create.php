@@ -22,11 +22,13 @@
         <?php echo form_open('exercises/create', $attributes); ?>
         <legend>Crear ejercicio</legend>        
         <input name="name" type="text" placeholder="Nombre">        
-        <?php foreach ($data['muscles'] as $muscle) { ?>
-            <select name="muscle_id">
+
+        <select name="muscle_id">
+            <?php foreach ($data['muscles'] as $muscle) { ?>
                 <option value="<?php echo $muscle->muscle_id ?>"><?php echo $muscle->name ?></option>
-            </select>
-        <?php } ?>
+            <?php } ?>
+        </select>
+
         <br><br>
         <button type="submit" class="btn">Crear</button>        
         </form>
@@ -46,4 +48,4 @@
         </div>
     </div>
     <div class="modal-backdrop fade in"></div>
-<?php } ?>  
+<?php } ?>

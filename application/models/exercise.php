@@ -7,13 +7,14 @@ class Exercise extends CI_Model {
     }
 
     function getData() {
-        $exercises = $this->db->get('exercises');
+        $sql = 'SELECT e. * , m.name AS muscle_name FROM exercises e, muscles m WHERE e.muscles_muscle_id = m.muscle_id';
+        $exercises = $this->db->query($sql);               
         return $exercises->result();
     }
 
     function insert($data) {
         $this->db->set('name', $data['name']);
-        $this->db->set('muscle_id', $data['muscle_id']);        
+        $this->db->set('muscles_muscle_id', $data['muscle_id']);        
         $this->db->insert('exercises');
     }
     

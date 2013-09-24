@@ -6,7 +6,7 @@ class Muscle extends CI_Model {
         parent::__construct();
     }
 
-    function getData() {
+    function getData() {        
         $muscles = $this->db->get('muscles');
         return $muscles->result();
     }

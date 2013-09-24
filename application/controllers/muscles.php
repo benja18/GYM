@@ -47,6 +47,7 @@ class Muscles extends CI_Controller {
     }
 
     public function listMuscles() {
+        $data['status'] = '';
         $this->load->model('muscle');
         $muscles = $this->muscle->getData();
 
@@ -81,7 +82,7 @@ class Muscles extends CI_Controller {
 
                 $data['name'] = $_POST['name'];
                 $data['muscle_id'] = $_POST['muscle_id'];
-                
+
                 $this->load->model('muscle');
                 $this->muscle->update($_POST['muscle_id'], $data);
 
@@ -110,11 +111,17 @@ class Muscles extends CI_Controller {
 
     public function delete() {
 
+        $data['status'] = '';
+
         $this->load->model('muscle');
         $id = $_GET['muscle_id'];
 
         $this->load->model('muscle');
         $this->muscle->delete($id);
+
+        if ($this->db->_error_number() == 1451) {
+            $data['status'] = 'CantDelete';
+        }
 
         $muscles = $this->muscle->getData();
 
