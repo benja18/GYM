@@ -12,9 +12,11 @@
         <!-- Bootstrap core CSS -->     
         <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/datatable.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/datepicker.css') ?>" rel="stylesheet">
         <script src="<?php echo base_url('assets/js/jquery.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/datatable.js') ?>"></script>
+        <script src="<?php echo base_url('assets/js/bootstrap-datepicker.js') ?>"></script>
     </head>
     <body class="bs-docs-home">        
         <div class="navbar">
@@ -27,8 +29,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> Socios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="icon-plus"></i> Agregar socio</a></li>                            
-                            <li><a href="#"><i class="icon-list"></i> Ver socios</a></li>
+                            <li><a href="<?php echo base_url('clients/create') ?>"><i class="icon-plus"></i> Agregar socio</a></li>                            
+                            <li><a href="<?php echo base_url('clients/listClients') ?>"><i class="icon-list"></i> Ver socios</a></li>
                             <li><a href="#"><i class="icon-folder-open"></i> Subscripciones y rutinas</a></li>
                             <li><a href="<?php echo base_url('subscriptionTypes/create') ?>"><i class="icon-plus"></i> Agregar tipo de subscripcion</a></li>
                             <li><a href="<?php echo base_url('subscriptionTypes/listSubscriptionTypes') ?>"><i class="icon-book"></i> Ver tipos de subscripciones</a></li>

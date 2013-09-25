@@ -23,4 +23,21 @@ class Client extends CI_Model {
         $this->db->set('ocupation', $data['ocupation']);
         $this->db->insert('clients');
     }
+    
+    function update($id, $data) {
+        $this->db->where('client_id', $id);
+        $this->db->update('clients',$data);        
+    }
+    
+    function delete($id) {
+        $this->db->where('client_id', $id);
+        $this->db->delete('clients');        
+    }
+    
+    function getById($id) {
+        $this->db->where('client_id',$id);
+        $query = $this->db->get('clients');
+        $client = $query->result_array();
+        return $client[0];
+    }
 }
