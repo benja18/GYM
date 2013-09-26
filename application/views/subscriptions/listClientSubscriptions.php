@@ -111,7 +111,7 @@
 </script>
 <script type="text/javascript">
     function sendId(subscription_id){                
-        document.getElementById('modal-footer').innerHTML = "<a href=\"<?php echo base_url('subscriptions/delete?subscription_id=')?>"+subscription_id+"\" class=\"btn btn-primary\">Si</a><a class=\"btn\" data-dismiss=\"modal\">No</a>"
+        document.getElementById('modal-footer').innerHTML = "<a href=\"<?php echo base_url('subscriptions/delete?subscription_id=')?>"+subscription_id+"&client_id=<?php echo $_GET['client_id']?>\" class=\"btn btn-primary\">Si</a><a class=\"btn\" data-dismiss=\"modal\">No</a>"
 
         $('#modal-delete').modal("show");
     }

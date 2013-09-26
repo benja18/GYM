@@ -121,7 +121,7 @@
         <div class="alert alert-block alert-error fade in">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <h4 class="alert-heading">Error!</h4>
-            <p>No se puede eliminar el tipo de susbcripcion ya que contiene subscripciones.</p>
+            <p>No se puede eliminar el tipo de susbcripcion ya que tiene subscripciones asociadas.</p>
         </div>
     <?php } ?>
     <legend>Tipo de Susbcripciones</legend>

@@ -156,22 +156,22 @@ class Subscriptions extends CI_Controller {
 
         $data['status'] = '';
 
-        $this->load->model('exercise');
-        $id = $_GET['exercise_id'];
+        $this->load->model('subscription');
+        $id = $_GET['subscription_id'];
 
-        $this->load->model('exercise');
-        $this->exercise->delete($id);
+        $this->load->model('subscription');
+        $this->subscription->delete($id);
 
         if ($this->db->_error_number() == 1451) {
             $data['status'] = 'CantDelete';
         }
 
-        $exercises = $this->exercise->getData();
+        $subscriptions = $this->subscription->getClientData($_GET['client_id']);
 
-        $data['exercises'] = $exercises;
+        $data['subscriptions'] = $subscriptions;
         //load de vistas
         $this->load->view('templates/header');
-        $this->load->view('exercises/listExercises', array('data' => $data));
+        $this->load->view('subscriptions/listClientSubscriptions', array('data' => $data));
         $this->load->view('templates/footer');
     }
 

@@ -76,7 +76,7 @@ class Muscles extends CI_Controller {
 
                 $this->load->view('templates/header');
                 $this->load->helper('form');
-                $this->load->view('muscle/update', array('data' => $data));
+                $this->load->view('muscles/update', array('data' => $data));
                 $this->load->view('templates/footer');
             } else {
 
