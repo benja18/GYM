@@ -32,7 +32,7 @@
         <button type="submit" class="btn">Crear</button>        
         </form>
     </div>
-    <div class="span2"/>    
+    <div class="span2"></div>
 </div>
 <?php if ($data['status'] == 'ClientInserted') { ?>
 <div class="modal hide fade in" style="display: block; ">

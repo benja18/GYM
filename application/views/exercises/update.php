@@ -24,7 +24,7 @@
         <button type="submit" class="btn">Actualizar</button>        
         </form>                
     </div>
-    <div class="span6"/>
+    <div class="span6"></div>
 </div>
 <?php if ($data['status'] == 'ExerciseUpdated') { ?>
 <div class="modal hide fade in" style="display: block; ">

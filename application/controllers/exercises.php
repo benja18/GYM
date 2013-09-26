@@ -29,12 +29,9 @@ class Exercises extends CI_Controller {
 
                 $this->load->model('exercise');
                 $this->exercise->insert($data);
-                if ($this->db->_error_number() == 1062) {
-                    $data['status'] = 'NameDuplicated';
-                } else {
-                    $data['status'] = 'ExerciseInserted';
-                }
-
+                
+                $data['status'] = 'ExerciseInserted';
+                
                 $this->load->view('templates/header');
                 $this->load->helper('form');
                 $this->load->view('exercises/create', array('data' => $data));
@@ -74,14 +71,18 @@ class Exercises extends CI_Controller {
             if ($this->form_validation->run() === FALSE) {
 
                 $this->load->model('exercise');
-                $data = $this->exercise->getById($_POST['exercise_id']);
+                $data['exercise'] = $this->exercise->getById($_POST['exercise_id']);
 
                 $data['status'] = 'ValidationError';
                 $data['exercise_id'] = $_POST['exercise_id'];
-
+                
+                $this->load->model('muscle');
+                $muscles = $this->muscle->getData();
+                $data['muscles'] = $muscles;
+            
                 $this->load->view('templates/header');
                 $this->load->helper('form');
-                $this->load->view('exercise/update', array('data' => $data));
+                $this->load->view('exercises/update', array('data' => $data));
                 $this->load->view('templates/footer');
             } else {
 
@@ -91,12 +92,8 @@ class Exercises extends CI_Controller {
                 $this->load->model('exercise');
                 $this->exercise->update($_POST['exercise_id'], $data);
 
-                if ($this->db->_error_number() == 1062) {
-                    $data['status'] = 'NameDuplicated';
-                } else {
-                    $data['status'] = 'ExerciseUpdated';
-                }
-
+                $data['status'] = 'ExerciseUpdated';
+                
                 $this->load->view('templates/header');
                 $this->load->helper('form');
                 $this->load->view('exercises/update', array('data' => $data));

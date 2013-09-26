@@ -116,7 +116,7 @@
     }
 </script>
 <br><br>
-<div class="row offset2">
+<div class="row  span14 offset1">
     <?php if ($data['status'] == 'CantDelete') { ?>
         <div class="alert alert-block alert-error fade in">
             <button type="button" class="close" data-dismiss="alert">×</button>
@@ -149,7 +149,7 @@
                         <td><strong><?php echo $client->name ?></strong></td>
                         <td><strong><?php echo $client->surname ?></strong></td>
                         <td><strong><?php echo $client->ci ?></strong></td>
-                        <td><strong><?php echo $client->birth ?></strong></td>
+                        <td><strong><?php echo date('d-m-Y',  strtotime($client->birth)); ?></strong></td>
                         <td><strong><?php echo $client->address ?></strong></td>
                         <td><strong><?php echo $client->mail ?></strong></td>
                         <td><strong><?php echo $client->emergency ?></strong></td>
