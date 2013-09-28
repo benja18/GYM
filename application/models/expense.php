@@ -6,9 +6,10 @@ class Expense extends CI_Model {
         parent::__construct();
     }
 
-    function getData() {        
-        $expenses = $this->db->get('expenses');
-        return $expenses->result();
+    function getData($start, $end) {        
+        $sql = 'SELECT * FROM expenses WHERE date BETWEEN "'.$start.'" AND "'.$end.'"';
+        $query = $this->db->query($sql);        
+        return $query->result();
     }
 
     function insert($data) {

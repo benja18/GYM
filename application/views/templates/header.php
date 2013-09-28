@@ -19,7 +19,7 @@
         <script src="<?php echo base_url('assets/js/bootstrap-datepicker.js') ?>"></script>
     </head>
     <body class="bs-docs-home">        
-        <div class="navbar">
+        <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <a class="brand" href="<?php echo base_url() ?>">Habana Gym</a>
                 <ul class="nav">
@@ -49,6 +49,14 @@
                             <li><a href="<?php echo base_url('exercises/listExercises') ?>"><i class="icon-list"></i> Ver ejercicios</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-briefcase"></i> Cuentas <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo base_url('expenses/create') ?>"><i class="icon-plus"></i> Agregar gasto</a></li>                            
+                            <li><a href="<?php echo base_url('expenses/listExpenses') ?>"><i class="icon-list"></i> Ver gastos</a></li>                            
+                            <li><a href="<?php echo base_url('subscriptionTypes/create') ?>"><i class="icon-book"></i> Calcular cuentas</a></li>                            
+                        </ul>
+                    </li>
                 </ul>
                 <ul class="nav pull-right">
                     <li class="dropdown">
@@ -66,5 +74,6 @@
                         </ul>
                     </li>                   
                 </ul>
-            </div>
+            </div>            
         </div>
+        <br><br><br><br>

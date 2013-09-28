@@ -109,45 +109,57 @@
     });
 </script>
 <script type="text/javascript">
-    function sendId(susbcription_type_id) {
-        document.getElementById('modal-footer').innerHTML = "<a href=\"<?php echo base_url('subscriptionTypes/delete?subscription_type_id=') ?>" + susbcription_type_id + "\" class=\"btn btn-primary\">Si</a><a class=\"btn\" data-dismiss=\"modal\">No</a>"
+    function sendId(expense_id) {
+        document.getElementById('modal-footer').innerHTML = "<a href=\"<?php echo base_url('expenses/delete?expense_id=') ?>" + expense_id + "\" class=\"btn btn-primary\">Si</a><a class=\"btn\" data-dismiss=\"modal\">No</a>"
 
         $('#modal-delete').modal("show");
     }
 </script>
 <div class="row span12 offset2">
-    <?php if ($data['status'] == 'CantDelete') { ?>
-        <div class="alert alert-block alert-error fade in">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <h4 class="alert-heading">Error!</h4>
-            <p>No se puede eliminar el tipo de susbcripcion ya que tiene subscripciones asociadas.</p>
+    <legend>Gastos</legend>   
+    <div class="row span12">
+        <?php
+            $attributes = array('role' => 'form', 'class' => 'form-inline', 'id' => 'myform', 'name' => 'create');
+            echo form_open('expenses/listExpenses', $attributes);
+        ?>
+        <h5>Buscar por fecha</h5>                
+        <input id="dp1" class="input-small" name="start_date" type="text" placeholder="Inicio" readonly="true" style="cursor:pointer;">
+        <input id="dp2" class="input-small" name="end_date" type="text" placeholder="Fin" readonly="true" style="cursor:pointer;">
+        <button type="submit" class="btn right">Buscar</button>        
+        <br><br>
+
+        </form>    
+        <?php if ($data['status'] == 'ShowTable') { ?>
         </div>
-    <?php } ?>
-    <legend>Tipo de Susbcripciones</legend>
-    <br><br>
-    <table class="table table-bordered" id="example">
-        <thead>
-            <tr>               
-                <th>Descripcion</th>
-                <th>Acciones</th>              
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if (isset($data['subscriptionTypes'])) {
-                foreach ($data['subscriptionTypes'] as $subscriptionType) {
-                    ?>
-                    <tr>                        
-                        <td><strong><?php echo $subscriptionType->description ?></strong></td>
-                        <td>
-                            <a class="btn btn-primary btn-mini" href="<?php echo base_url('subscriptionTypes/update?subscription_type_id=') . $subscriptionType->subscription_type_id ?>"><i class="icon-edit  icon-white"></i> Editar</a>
-                            <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $subscriptionType->subscription_type_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                            
-                        </td>                                                
-                    </tr>
-                <?php }
-            } ?>
+        <table class="table table-bordered" id="example">
+            <thead>
+                <tr>               
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if (isset($data['expenses'])) {
+                    foreach ($data['expenses'] as $expense) {
+                        ?>
+                        <tr>                        
+                            <td><strong><?php echo $expense->name ?></strong></td>
+                            <td><strong><?php echo $expense->value ?></strong></td>
+                            <td><strong><?php echo $expense->date ?></strong></td>                        
+                            <td>
+                                <a class="btn btn-primary btn-mini" href="<?php echo base_url('expenses/update?expense_id=') . $expense->expense_id ?>"><i class="icon-edit  icon-white"></i> Editar</a>
+                                <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $expense->expense_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                            
+                            </td>                                                
+                        </tr>
+                    <?php }
+                }
+                ?>
         </tbody>
     </table>
+        <?php } ?>
 </div>
 <div class="modal hide" id="modal-delete">
     <div class="modal-header">
@@ -155,8 +167,26 @@
         <h3>Mensaje</h3>
     </div>
     <div class="modal-body">
-        <p>¿Está seguro que desea eliminar el tipo de susbcripcion?</p>
+        <p>¿Está seguro que desea eliminar el gasto?</p>
     </div>
     <div id="modal-footer" class="modal-footer">        
     </div>
 </div>
+<script>
+    $(function(){
+        $('#dp1').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+
+    });
+
+</script>
+<script>
+    $(function(){
+        $('#dp2').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+
+    });
+
+</script>

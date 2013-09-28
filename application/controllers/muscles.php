@@ -1,6 +1,6 @@
 <?php
 
-class Muscles extends CI_Controller {
+class Muscles extends MY_Controller {
 
     public function __construct() {
         parent::__construct();

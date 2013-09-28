@@ -115,7 +115,6 @@
         $('#modal-delete').modal("show");
     }
 </script>
-<br><br>
 <div class="row  span14 offset1">
     <?php if ($data['status'] == 'CantDelete') { ?>
         <div class="alert alert-block alert-error fade in">

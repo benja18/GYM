@@ -1,5 +1,4 @@
-<div class="row-fluid">
-    <br><br>    
+<div class="row-fluid">    
     <div class="span10 offset1">
         <?php if ($data['status'] == 'ValidationError') { ?>
             <div class="alert alert-block alert-error fade in">

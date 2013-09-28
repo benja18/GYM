@@ -1,5 +1,4 @@
-<div class="row-fluid">
-    <br><br>
+<div class="row-fluid">    
     <div class="span6 offset1">
         <?php if ($data['status'] == 'ValidationError') { ?>
             <div class="alert alert-block alert-error fade in">
@@ -35,7 +34,7 @@
         <h4>Ejercicio editado</h4>
     </div>
     <div class="modal-footer">
-        <a href="<?php echo base_url('') ?>" class="btn btn-primary">Aceptar</a>        
+        <a href="<?php echo base_url('exercises/listExercises') ?>" class="btn btn-primary">Aceptar</a>        
     </div>
 </div>
 <div class="modal-backdrop fade in"></div>

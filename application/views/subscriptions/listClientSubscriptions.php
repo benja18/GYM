@@ -116,7 +116,6 @@
         $('#modal-delete').modal("show");
     }
 </script>
-<br><br>
 <div class="row span12 offset2">
     <legend>Subscripciones</legend>
     <br><br>

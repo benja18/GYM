@@ -116,14 +116,13 @@
         $('#modal-delete').modal("show");
     }
 </script>
-<br><br>
 <div class="row span12 offset2">
     <legend>Subscripciones</legend>
     <div class="row span12">
-    <?php        
+    <?php 
         $attributes = array('role' => 'form', 'class' => 'form-inline', 'id' => 'myform', 'name' => 'create');
-        ?>
-        <?php echo form_open('subscriptions/findSubscriptions', $attributes); ?>
+        echo form_open('subscriptions/findSubscriptions', $attributes); 
+    ?>
         <h5>Buscar por fecha</h5>                
         <input id="dp1" class="input-small" name="start_date" type="text" placeholder="Inicio" readonly="true" style="cursor:pointer;">
         <input id="dp2" class="input-small" name="end_date" type="text" placeholder="Fin" readonly="true" style="cursor:pointer;">
@@ -161,8 +160,7 @@
                         <td><strong><?php echo $subscription->price ?></strong></td>
                         <td><strong><?php echo $subscription->subscription_type ?></strong></td>
                         <td>
-                            <a class="btn btn-primary btn-mini" href="<?php echo base_url('subscriptions/update?subscription_id=').$subscription->subscription_id ?>"><i class="icon-edit  icon-white"></i> Editar</a>
-                            <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $subscription->subscription_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                            
+                            <a class="btn btn-primary btn-mini" href="<?php echo base_url('clients/update?client_id=').$subscription->client_id ?>"><i class="icon-info-sign  icon-white"></i> Ver cliente</a>                            
                         </td>                                                
                     </tr>
     <?php } } ?>

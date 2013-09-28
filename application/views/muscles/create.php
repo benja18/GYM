@@ -1,5 +1,4 @@
 <div class="row-fluid">
-    <br><br>    
     <div class="span6 offset1">
         <?php if ($data['status'] == 'NameDuplicated') { ?>
             <div class="alert alert-block alert-error fade in">

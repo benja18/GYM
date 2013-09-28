@@ -60,19 +60,19 @@ class Subscription extends CI_Model {
     }
     
     function getNextExpirations($days) {
-        $sql = 'SELECT s.* , st.description AS subscription_type, c.name AS name, c.surname AS surname, c.ci AS ci FROM subscriptions s, subscription_types st, clients c WHERE s.subscription_types_subscription_type_id = st.subscription_type_id AND s.clients_client_id = c.client_id AND end_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(),interval '.$days.' day)';
+        $sql = 'SELECT s.* , st.description AS subscription_type, c.client_id as client_id, c.name AS name, c.surname AS surname, c.ci AS ci FROM subscriptions s, subscription_types st, clients c WHERE s.subscription_types_subscription_type_id = st.subscription_type_id AND s.clients_client_id = c.client_id AND end_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(),interval '.$days.' day)';
         $query = $this->db->query($sql);               
         return $query->result();                
     }
     
     function getSubscriptionsUnpaid() {
-        $sql = 'SELECT s.* , st.description AS subscription_type, c.name AS name, c.surname AS surname, c.ci AS ci FROM subscriptions s, subscription_types st, clients c WHERE s.subscription_types_subscription_type_id = st.subscription_type_id AND s.clients_client_id = c.client_id AND s.paid = 0';
+        $sql = 'SELECT s.* , st.description AS subscription_type, c.client_id as client_id, c.name AS name, c.surname AS surname, c.ci AS ci FROM subscriptions s, subscription_types st, clients c WHERE s.subscription_types_subscription_type_id = st.subscription_type_id AND s.clients_client_id = c.client_id AND s.paid = 0';
         $query = $this->db->query($sql);        
         return $query->result();                
     }
     
     function getByDate($start,$end) {
-        $sql = 'SELECT s.* , st.description AS subscription_type, c.name AS name, c.surname AS surname, c.ci AS ci FROM subscriptions s, subscription_types st, clients c WHERE s.subscription_types_subscription_type_id = st.subscription_type_id AND s.clients_client_id = c.client_id AND s.end_date BETWEEN "'.$start.'" AND "'.$end.'"';
+        $sql = 'SELECT s.* , st.description AS subscription_type, c.client_id as client_id, c.name AS name, c.surname AS surname, c.ci AS ci FROM subscriptions s, subscription_types st, clients c WHERE s.subscription_types_subscription_type_id = st.subscription_type_id AND s.clients_client_id = c.client_id AND s.end_date BETWEEN "'.$start.'" AND "'.$end.'"';
         $query = $this->db->query($sql);        
         return $query->result();                
     }

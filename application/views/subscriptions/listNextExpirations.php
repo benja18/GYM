@@ -116,7 +116,6 @@
         $('#modal-delete').modal("show");
     }
 </script>
-<br><br>
 <div class="row span12 offset2">
     <legend>Subscripciones a expirar en <?php echo $this->data['daysCount']; ?> dias</legend>
     <br><br>    
@@ -148,8 +147,7 @@
                         <td><strong><?php echo $subscription->price ?></strong></td>
                         <td><strong><?php echo $subscription->subscription_type ?></strong></td>
                         <td>
-                            <a class="btn btn-primary btn-mini" href="<?php echo base_url('subscriptions/update?subscription_id=').$subscription->subscription_id ?>"><i class="icon-edit  icon-white"></i> Editar</a>
-                            <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $subscription->subscription_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                            
+                            <a class="btn btn-primary btn-mini" href="<?php echo base_url('clients/update?client_id=').$subscription->client_id ?>"><i class="icon-info-sign  icon-white"></i> Ver cliente</a>                            
                         </td>                                                
                     </tr>
     <?php } } ?>
