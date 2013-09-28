@@ -1,6 +1,6 @@
 <?php
 
-class Routines extends CI_Controller {
+class Routines extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -17,7 +17,7 @@ class Routines extends CI_Controller {
             if ($this->form_validation->run() === FALSE) {
                 $data['status'] = 'ValidationError';
                 $data['clients_client_id'] = $_POST['clients_client_id'];
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('routines/create', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -29,7 +29,7 @@ class Routines extends CI_Controller {
                 
                 $data['status'] = 'RoutineInserted';
 
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('routines/create', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -37,7 +37,7 @@ class Routines extends CI_Controller {
         } else {
             $data['status'] = '';
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', array('data' => $this->data));
             $this->load->helper('form');
             $this->load->view('routines/create', array('data' => $data));
             $this->load->view('templates/footer');
@@ -51,7 +51,7 @@ class Routines extends CI_Controller {
 
         $data['routines'] = $routines;
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', array('data' => $this->data));
         $this->load->view('routines/listClientRoutines', array('data' => $data));
         $this->load->view('templates/footer');
     }
@@ -72,7 +72,7 @@ class Routines extends CI_Controller {
                 $data['status'] = 'ValidationError';
                 $data['routine_id'] = $_POST['routine_id'];
 
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('routines/update', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -86,7 +86,7 @@ class Routines extends CI_Controller {
 
                 $data['status'] = 'RoutineUpdated';
 
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('routines/update', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -96,7 +96,7 @@ class Routines extends CI_Controller {
             $this->load->model('routine');
             $data = $this->routine->getById($_GET['routine_id']);
             $data['status'] = "";
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', array('data' => $this->data));
             $this->load->helper('form');
             $this->load->view('routines/update', array('data' => $data));
             $this->load->view('templates/footer');
@@ -121,7 +121,7 @@ class Routines extends CI_Controller {
 
         $data['routines'] = $routines;
         //load de vistas
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', array('data' => $this->data));
         $this->load->view('routines/listClientRoutines', array('data' => $data));
         $this->load->view('templates/footer');
     }

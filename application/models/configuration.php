@@ -10,11 +10,16 @@ class Configuration extends CI_Model {
 
         return $configurations->result();
     }
-
-    function insert($data) {
-        $this->db->set('key', $data['key']);
-        $this->db->set('value', $data['value']);        
-        $this->db->insert('configurations');
+    
+    function getExpirationInterval() {
+        $sql = 'SELECT configuration_value FROM configurations WHERE configuration_key = "EXPIRATION_INTERVAL_DAYS"';
+        $query = $this->db->query($sql);               
+        $inerval = $query->result_array();        
+        return $inerval['0']['configuration_value'];
     }
-
+    
+    function updateExpirationInterval($interval) {
+        $sql = 'UPDATE configurations SET configuration_value = '.$interval.' WHERE configuration_key = "EXPIRATION_INTERVAL_DAYS"';
+        $query = $this->db->query($sql);                       
+    }
 }

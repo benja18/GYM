@@ -25,6 +25,7 @@
         <input name="ci" type="text" placeholder="Cedula">
         <input id="dp1" name="birth" type="text" placeholder="Fecha de Nacimiento" readonly="true" style="cursor:pointer;">        
         <input name="address" type="text" placeholder="Direccion">
+        <input name="phone" type="text" placeholder="Telefono">
         <input name="mail" type="text" placeholder="Mail">
         <input name="emergency" type="text" placeholder="Emergencia">
         <input name="ocupation" type="text" placeholder="Ocupacion">

@@ -1,6 +1,6 @@
 <?php
 
-class Users extends CI_Controller {
+class Users extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -18,7 +18,7 @@ class Users extends CI_Controller {
 
             if ($this->form_validation->run() === FALSE) {
                 $data['status'] = 'ValidationError';
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('users/create', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -37,13 +37,13 @@ class Users extends CI_Controller {
                         $data['status'] = 'UserInserted';
                     }
 
-                    $this->load->view('templates/header');
+                    $this->load->view('templates/header', array('data' => $this->data));
                     $this->load->helper('form');
                     $this->load->view('users/create', array('data' => $data));
                     $this->load->view('templates/footer');
                 } else {
                     $data['status'] = 'WrongPasswords';
-                    $this->load->view('templates/header');
+                    $this->load->view('templates/header', array('data' => $this->data));
                     $this->load->helper('form');
                     $this->load->view('users/create', array('data' => $data));
                     $this->load->view('templates/footer');
@@ -51,7 +51,7 @@ class Users extends CI_Controller {
             }
         } else {
             $data['status'] = '';
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', array('data' => $this->data));
             $this->load->helper('form');
             $this->load->view('users/create', array('data' => $data));
             $this->load->view('templates/footer');
@@ -66,7 +66,7 @@ class Users extends CI_Controller {
         $data['users'] = $users;
 
         //load de vistas
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', array('data' => $this->data));
         $this->load->view('users/listUsers', array('data' => $data)); //llamada a la vista, que crearemos posteriormente
         $this->load->view('templates/footer');
     }
@@ -88,7 +88,7 @@ class Users extends CI_Controller {
                 $data['status'] = 'ValidationError';
                 $data['user_id'] = $_POST['user_id'];
 
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('users/update', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -108,14 +108,14 @@ class Users extends CI_Controller {
                         $data['status'] = 'UserUpdated';
                     }
 
-                    $this->load->view('templates/header');
+                    $this->load->view('templates/header', array('data' => $this->data));
                     $this->load->helper('form');
                     $this->load->view('users/update', array('data' => $data));
                     $this->load->view('templates/footer');
                 } else {
 
                     $data['status'] = 'WrongPasswords';
-                    $this->load->view('templates/header');
+                    $this->load->view('templates/header', array('data' => $this->data));
                     $this->load->helper('form');
                     $this->load->view('users/update', array('data' => $data));
                     $this->load->view('templates/footer');
@@ -126,7 +126,7 @@ class Users extends CI_Controller {
             $this->load->model('user');
             $data = $this->user->getById($_GET['user_id']);
             $data['status'] = "";
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', array('data' => $this->data));
             $this->load->helper('form');
             $this->load->view('users/update', array('data' => $data));
             $this->load->view('templates/footer');
@@ -145,7 +145,7 @@ class Users extends CI_Controller {
 
         $data['users'] = $users;        
         //load de vistas
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', array('data' => $this->data));
         $this->load->view('users/listUsers', array('data' => $data)); //llamada a la vista, que crearemos posteriormente
         $this->load->view('templates/footer');
     }

@@ -1,6 +1,6 @@
 <?php
 
-class Exercises extends CI_Controller {
+class Exercises extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -19,7 +19,7 @@ class Exercises extends CI_Controller {
             if ($this->form_validation->run() === FALSE) {
                 $data['status'] = 'ValidationError';
 
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('exercises/create', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -32,7 +32,7 @@ class Exercises extends CI_Controller {
                 
                 $data['status'] = 'ExerciseInserted';
                 
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('exercises/create', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -42,7 +42,7 @@ class Exercises extends CI_Controller {
             $this->load->model('muscle');
             $muscles = $this->muscle->getData();
             $data['muscles'] = $muscles;
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', array('data' => $this->data));
             $this->load->helper('form');
             $this->load->view('exercises/create', array('data' => $data));
             $this->load->view('templates/footer');
@@ -55,7 +55,7 @@ class Exercises extends CI_Controller {
 
         $data['exercises'] = $exercises;
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', array('data' => $this->data));
         $this->load->view('exercises/listExercises', array('data' => $data));
         $this->load->view('templates/footer');
     }
@@ -80,7 +80,7 @@ class Exercises extends CI_Controller {
                 $muscles = $this->muscle->getData();
                 $data['muscles'] = $muscles;
             
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('exercises/update', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -94,7 +94,7 @@ class Exercises extends CI_Controller {
 
                 $data['status'] = 'ExerciseUpdated';
                 
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('exercises/update', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -108,7 +108,7 @@ class Exercises extends CI_Controller {
 
             $this->load->model('exercise');
             $data['exercise'] = $this->exercise->getById($_GET['exercise_id']);
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', array('data' => $this->data));
             $this->load->helper('form');
             $this->load->view('exercises/update', array('data' => $data));
             $this->load->view('templates/footer');
@@ -133,7 +133,7 @@ class Exercises extends CI_Controller {
 
         $data['exercises'] = $exercises;
         //load de vistas
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', array('data' => $this->data));
         $this->load->view('exercises/listExercises', array('data' => $data));
         $this->load->view('templates/footer');
     }

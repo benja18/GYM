@@ -18,6 +18,7 @@ class Client extends CI_Model {
         $this->db->set('ci', $data['ci']);
         $this->db->set('birth', $data['birth']);
         $this->db->set('address', $data['address']);
+        $this->db->set('phone', $data['phone']);
         $this->db->set('mail', $data['mail']);
         $this->db->set('emergency', $data['emergency']);
         $this->db->set('ocupation', $data['ocupation']);

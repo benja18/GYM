@@ -134,6 +134,7 @@
                 <th>Cedula</th>
                 <th>Fecha de nacimiento</th>
                 <th>Direccion</th>
+                <th>Telefono</th>
                 <th>Mail</th>
                 <th>Emergencia</th>
                 <th>Ocupacion</th>
@@ -151,6 +152,7 @@
                         <td><strong><?php echo $client->ci ?></strong></td>
                         <td><strong><?php echo date('d-m-Y',  strtotime($client->birth)); ?></strong></td>
                         <td><strong><?php echo $client->address ?></strong></td>
+                        <td><strong><?php echo $client->phone ?></strong></td>
                         <td><strong><?php echo $client->mail ?></strong></td>
                         <td><strong><?php echo $client->emergency ?></strong></td>
                         <td><strong><?php echo $client->ocupation ?></strong></td>

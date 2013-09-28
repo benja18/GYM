@@ -23,17 +23,21 @@
             <div class="navbar-inner">
                 <a class="brand" href="<?php echo base_url() ?>">Habana Gym</a>
                 <ul class="nav">
-                    <li>
-                        <a href="#">Vencimientos <span class="badge badge-important">3</span></a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-exclamation-sign"></i> Vencimientos<b class="caret"></b> <span class="badge badge-important"><?php echo $data['nextExpirationsCounter']; ?></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo base_url('subscriptions/listNextExpirations') ?>"><span class="badge badge-important"><?php echo $data['nextExpirationsCounter']; ?></span> Proximos vencimientos</a></li>                            
+                            <li><a href="<?php echo base_url('subscriptions/listSubscriptionsUnpaid') ?>"><span class="badge badge-success"><?php echo $data['unpaidSubscriptionsCounter']; ?></span> Subscripciones sin pagar</a></li>                            
+                            <li><a href="<?php echo base_url('subscriptions/findSubscriptions') ?>"><i class="icon-search"></i> Buscar subscripciones</a></li>                            
+                        </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> Socios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url('clients/create') ?>"><i class="icon-plus"></i> Agregar socio</a></li>                            
-                            <li><a href="<?php echo base_url('clients/listClients') ?>"><i class="icon-list"></i> Ver socios</a></li>
-                            <li><a href="#"><i class="icon-folder-open"></i> Subscripciones y rutinas</a></li>
+                            <li><a href="<?php echo base_url('clients/listClients') ?>"><i class="icon-list"></i> Ver socios</a></li>                            
                             <li><a href="<?php echo base_url('subscriptionTypes/create') ?>"><i class="icon-plus"></i> Agregar tipo de subscripcion</a></li>
-                            <li><a href="<?php echo base_url('subscriptionTypes/listSubscriptionTypes') ?>"><i class="icon-book"></i> Ver tipos de subscripciones</a></li>
+                            <li><a href="<?php echo base_url('subscriptionTypes/listSubscriptionTypes') ?>"><i class="icon-list"></i> Ver tipos de subscripciones</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -51,7 +55,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i><b class="caret"></b></a>                                
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url('users/create') ?>"><i class="icon-plus"></i> Agregar usuario</a></li>
-                            <li><a href="<?php echo base_url('users/listUsers') ?>"><i class="icon-list"></i> Ver usuarios</a></li>                        
+                            <li><a href="<?php echo base_url('users/listUsers') ?>"><i class="icon-list"></i> Ver usuarios</a></li>
+                            <li><a href="<?php echo base_url('configurations/updateExpirationInterval') ?>"><i class="icon-calendar"></i> Alerta de expiracion</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

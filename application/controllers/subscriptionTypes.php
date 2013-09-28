@@ -1,6 +1,6 @@
 <?php
 
-class SubscriptionTypes extends CI_Controller {
+class SubscriptionTypes extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -16,7 +16,7 @@ class SubscriptionTypes extends CI_Controller {
 
             if ($this->form_validation->run() === FALSE) {
                 $data['status'] = 'ValidationError';
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('subscriptionTypes/create', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -28,7 +28,7 @@ class SubscriptionTypes extends CI_Controller {
                 
                 $data['status'] = 'SubscriptionTypeInserted';                
 
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('subscriptionTypes/create', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -36,7 +36,7 @@ class SubscriptionTypes extends CI_Controller {
         } else {
             $data['status'] = '';
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', array('data' => $this->data));
             $this->load->helper('form');
             $this->load->view('subscriptionTypes/create', array('data' => $data));
             $this->load->view('templates/footer');
@@ -50,7 +50,7 @@ class SubscriptionTypes extends CI_Controller {
 
         $data['subscriptionTypes'] = $subscriptionTypes;
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', array('data' => $this->data));
         $this->load->view('subscriptionTypes/listSubscriptionTypes', array('data' => $data));
         $this->load->view('templates/footer');
     }
@@ -71,7 +71,7 @@ class SubscriptionTypes extends CI_Controller {
                 $data['status'] = 'ValidationError';
                 $data['subscription_type_id'] = $_POST['subscription_type_id'];
 
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('subscriptionTypes/update', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -85,7 +85,7 @@ class SubscriptionTypes extends CI_Controller {
                 
                 $data['status'] = 'SubscriptionTypeUpdated';
 
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('subscriptionTypes/update', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -95,7 +95,7 @@ class SubscriptionTypes extends CI_Controller {
             $this->load->model('subscriptionType');
             $data = $this->subscriptionType->getById($_GET['subscription_type_id']);
             $data['status'] = "";
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', array('data' => $this->data));
             $this->load->helper('form');
             $this->load->view('subscriptionTypes/update', array('data' => $data));
             $this->load->view('templates/footer');
@@ -120,7 +120,7 @@ class SubscriptionTypes extends CI_Controller {
 
         $data['subscriptionTypes'] = $subscriptionTypes;
         //load de vistas
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', array('data' => $this->data));
         $this->load->view('subscriptionTypes/listSubscriptionTypes', array('data' => $data));
         $this->load->view('templates/footer');
     }

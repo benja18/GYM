@@ -26,6 +26,7 @@
         <input name="ci" type="text" placeholder="Cedula" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['ci']; }?>">
         <input id="dp1" name="birth" type="text" placeholder="Fecha de Nacimiento" readonly="true" style="cursor:pointer;" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['birth']; }?>">        
         <input name="address" type="text" placeholder="Direccion" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['address']; }?>">
+        <input name="phone" type="text" placeholder="Telefono" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['phone']; }?>">
         <input name="mail" type="text" placeholder="Mail" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['mail']; }?>">
         <input name="emergency" type="text" placeholder="Emergencia" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['emergency']; }?>">
         <input name="ocupation" type="text" placeholder="Ocupacion" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['ocupation']; }?>">

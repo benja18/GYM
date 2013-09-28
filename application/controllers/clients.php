@@ -1,6 +1,6 @@
 <?php
 
-class Clients extends CI_Controller {
+class Clients extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -17,6 +17,7 @@ class Clients extends CI_Controller {
             $this->form_validation->set_rules('ci', 'Ci', 'required');
             $this->form_validation->set_rules('birth', 'Birth', 'required');
             $this->form_validation->set_rules('address', 'Address', 'required');
+            $this->form_validation->set_rules('phone', 'Phone', 'required');
             $this->form_validation->set_rules('mail', 'Mail', 'required');
             $this->form_validation->set_rules('emergency', 'Emergency', 'required');
             $this->form_validation->set_rules('ocupation', 'Ocupation', 'required');
@@ -24,7 +25,7 @@ class Clients extends CI_Controller {
 
             if ($this->form_validation->run() === FALSE) {
                 $data['status'] = 'ValidationError';
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('clients/create', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -35,6 +36,7 @@ class Clients extends CI_Controller {
                 $data['ci'] = $_POST['ci'];
                 $data['birth'] = $_POST['birth'];
                 $data['address'] = $_POST['address'];
+                $data['phone'] = $_POST['phone'];
                 $data['mail'] = $_POST['mail'];
                 $data['emergency'] = $_POST['emergency'];
                 $data['ocupation'] = $_POST['ocupation'];
@@ -47,14 +49,14 @@ class Clients extends CI_Controller {
                     $data['status'] = 'ClientInserted';
                 }
 
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('clients/create', array('data' => $data));
                 $this->load->view('templates/footer');
             }
         } else {
             $data['status'] = '';
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', array('data' => $this->data));
             $this->load->helper('form');
             $this->load->view('clients/create', array('data' => $data));
             $this->load->view('templates/footer');
@@ -70,7 +72,7 @@ class Clients extends CI_Controller {
 
         $data['clients'] = $clients;
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', array('data' => $this->data));
         $this->load->view('clients/listClients', array('data' => $data));
         $this->load->view('templates/footer');
     }
@@ -86,6 +88,7 @@ class Clients extends CI_Controller {
             $this->form_validation->set_rules('ci', 'Ci', 'required');
             $this->form_validation->set_rules('birth', 'Birth', 'required');
             $this->form_validation->set_rules('address', 'Address', 'required');
+            $this->form_validation->set_rules('phone', 'Phone', 'required');
             $this->form_validation->set_rules('mail', 'Mail', 'required');
             $this->form_validation->set_rules('emergency', 'Emergency', 'required');
             $this->form_validation->set_rules('ocupation', 'Ocupation', 'required');
@@ -98,7 +101,7 @@ class Clients extends CI_Controller {
                 $data['status'] = 'ValidationError';
                 $data['client_id'] = $_POST['client_id'];
 
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('clients/update', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -109,6 +112,7 @@ class Clients extends CI_Controller {
                 $data['ci'] = $_POST['ci'];
                 $data['birth'] = $_POST['birth'];
                 $data['address'] = $_POST['address'];
+                $data['phone'] = $_POST['phone'];
                 $data['mail'] = $_POST['mail'];
                 $data['emergency'] = $_POST['emergency'];
                 $data['ocupation'] = $_POST['ocupation'];
@@ -124,7 +128,7 @@ class Clients extends CI_Controller {
                     $data['status'] = 'ClientUpdated';
                 }
 
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('clients/update', array('data' => $data));
                 $this->load->view('templates/footer');
@@ -134,7 +138,7 @@ class Clients extends CI_Controller {
             $this->load->model('client');
             $data = $this->client->getById($_GET['client_id']);
             $data['status'] = "";
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', array('data' => $this->data));
             $this->load->helper('form');
             $this->load->view('clients/update', array('data' => $data));
             $this->load->view('templates/footer');
@@ -155,7 +159,7 @@ class Clients extends CI_Controller {
 
         $data['clients'] = $clients;
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', array('data' => $this->data));
         $this->load->view('clients/listClients', array('data' => $data));
         $this->load->view('templates/footer');
     }
