@@ -120,7 +120,7 @@
         <div class="alert alert-block alert-error fade in">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <h4 class="alert-heading">Error!</h4>
-            <p>No se puede eliminar el socio .</p>
+            <p>No se puede eliminar el socio ya que tiene rutinas o subscipciones asociadas.</p>
         </div>
     <?php } ?>
     <legend>Clientes</legend>
@@ -156,7 +156,7 @@
                         <td><strong><?php echo $client->emergency ?></strong></td>
                         <td><strong><?php echo $client->ocupation ?></strong></td>
                         <td>
-                            <a class="btn btn-primary btn-mini span2" href="<?php echo base_url('clients/update?client_id=') . $client->client_id ?>"><i class="icon-edit  icon-white"></i> Editar</a>
+                            <a class="btn btn-primary btn-mini span2" href="<?php echo base_url('clients/update?client_id=') . $client->client_id ?>"><i class="icon-info-sign  icon-white"></i> Ver Info</a>
                             <a class="btn btn-danger btn-mini span2" onclick="sendId(<?php echo $client->client_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                            
                         </td>                                                
                     </tr>

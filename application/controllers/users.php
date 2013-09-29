@@ -25,9 +25,9 @@ class Users extends MY_Controller {
             } else {
                 //recogemos los datos obtenidos por POST
                 $data['username'] = $_POST['username'];
-                $data['password'] = $_POST['password'];
+                $data['password'] = md5($_POST['password']);
 
-                if ($data['password'] == $_POST['passwordCheck']) {
+                if ($data['password'] == md5($_POST['passwordCheck'])) {
                     //llamamos al modelo, concretamente a la función insert() para que nos haga el insert en la base de datos.
                     $this->load->model('user');
                     $this->user->insert($data);
@@ -95,10 +95,10 @@ class Users extends MY_Controller {
             } else {
 
                 $data['username'] = $_POST['username'];
-                $data['password'] = $_POST['password'];
+                $data['password'] = md5($_POST['password']);
                 $data['user_id'] = $_POST['user_id'];
 
-                if ($data['password'] == $_POST['passwordCheck']) {
+                if ($data['password'] == md5($_POST['passwordCheck'])) {
                     $this->load->model('user');
                     $this->user->update($_POST['user_id'], $data);
 

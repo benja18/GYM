@@ -140,13 +140,17 @@
                     <tr>                                                                        
                         <td><strong><?php echo $routine->name ?></strong></td>                        
                         <td>
-                            <a class="btn btn-primary btn-mini" href="<?php echo base_url('routines/update?routine_id=').$routine->routine_id ?>"><i class="icon-edit  icon-white"></i> Editar</a>
-                            <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $routine->routine_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                            
+                            <a class="btn btn-primary btn-mini" href="<?php echo base_url('routines/update?routine_id=').$routine->routine_id.'&client_id='.$routine->clients_client_id ?>"><i class="icon-edit  icon-white"></i> Editar</a>
+                            <a class="btn btn-inverse btn-mini" href="<?php echo base_url('routines/addExercise?routine_id=').$routine->routine_id.'&client_id='.$routine->clients_client_id ?>"><i class="icon-edit  icon-white"></i> Agregar ejercicios</a>
+                            <a class="btn btn-success btn-mini" href="<?php echo base_url('routines/listExercises?routine_id=').$routine->routine_id.'&client_id='.$routine->clients_client_id ?>"><i class="icon-edit  icon-white"></i> Ver ejercicios</a>
+                            <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $routine->routine_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                                                       
                         </td>                                                
                     </tr>
     <?php } } ?>
         </tbody>
     </table>
+    <br><br><br>
+    <a class="btn btn-primary" href="<?php echo base_url('clients/update?client_id=').$_GET['client_id']?>"><i class="icon-backward  icon-white"></i> Volver al socio</a>
 </div>
 <div class="modal hide" id="modal-delete">
     <div class="modal-header">

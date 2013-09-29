@@ -14,9 +14,8 @@
                 <p>Debes completar todos los campos.</p>
             </div>
         <?php } ?>
-        <?php
-        //echo validation_errors();
-        $attributes = array('role' => 'form', 'class' => 'span3', 'id' => 'myform', 'name' => 'create');
+        <?php        
+        $attributes = array('role' => 'form', 'class' => 'span4', 'id' => 'myform', 'name' => 'create');
         ?>
         <?php echo form_open('subscriptions/create', $attributes); ?>
         <legend>Crear subscripcion</legend>                
@@ -47,7 +46,7 @@
             <h4>Subscripcion creada</h4>
         </div>
         <div class="modal-footer">
-            <a href="<?php echo base_url('') ?>" class="btn btn-primary">Aceptar</a>        
+            <a href="<?php echo base_url('subscriptions/listClientSubscriptions?client_id='.$data['clients_client_id']) ?>" class="btn btn-primary">Aceptar</a>        
         </div>
     </div>
     <div class="modal-backdrop fade in"></div>

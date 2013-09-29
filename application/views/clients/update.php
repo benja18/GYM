@@ -32,9 +32,9 @@
         <br><br>
         <button type="submit" class="btn">Actualizar</button>        
         </form>
-        <div class="span6 offset2 right">
-        <br><br><br>
         <?php if ($data['status'] != 'ClientUpdated') { ?>
+        <div class="span6 offset2 right">
+        <br><br><br>        
         <a href="<?php echo base_url('subscriptions/create?client_id=').$data['client_id'] ?>" class="btn btn-primary span6">Crear Subscripcion</a>
         <br><br><br>
         <a href="<?php echo base_url('subscriptions/listClientSubscriptions?client_id=').$data['client_id'] ?>" class="btn btn-success span6">Ver Subscripciones</a>

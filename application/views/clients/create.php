@@ -15,7 +15,7 @@
             </div>
         <?php } ?>
         <?php        
-        $attributes = array('role' => 'form', 'class' => 'span3', 'id' => 'myform', 'name' => 'create');
+        $attributes = array('role' => 'form', 'class' => 'span4', 'id' => 'myform', 'name' => 'create');
         ?>
         <?php echo form_open('clients/create', $attributes); ?>
         <legend>Crear Socio</legend>        
@@ -43,7 +43,7 @@
         <h4>Socio creado</h4>
     </div>
     <div class="modal-footer">
-        <a href="<?php echo base_url('') ?>" class="btn btn-primary">Aceptar</a>        
+        <a href="<?php echo base_url('clients/listClients') ?>" class="btn btn-primary">Aceptar</a>        
     </div>
 </div>
 <div class="modal-backdrop fade in"></div>

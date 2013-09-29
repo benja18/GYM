@@ -78,8 +78,7 @@ class Subscriptions extends MY_Controller {
             if ($this->form_validation->run() === FALSE) {
 
                 $this->load->model('subscription');
-                $data['subscription'] = $this->subscription->getById($_POST['subscription_id']);
-
+                $data['subscription'] = $this->subscription->getById($_POST['subscription_id']);                
                 $data['status'] = 'ValidationError';
                 $data['clients_client_id'] = $_POST['clients_client_id'];
                 $data['subscription_id'] = $_POST['subscription_id'];
@@ -93,7 +92,7 @@ class Subscriptions extends MY_Controller {
                 $this->load->view('subscriptions/update', array('data' => $data));
                 $this->load->view('templates/footer');
             } else {
-
+                
                 $data['start_date'] = $_POST['start_date'];
                 $data['end_date'] = $_POST['end_date'];
                 $data['paid'] = isset($_POST['paid']) && $_POST['paid'] ? 1 : 0;
@@ -117,8 +116,8 @@ class Subscriptions extends MY_Controller {
                     $this->load->model('subscriptionType');
                     $subscriptionTypes = $this->subscriptionType->getData();
                     $data['subscription_types'] = $subscriptionTypes;
-                }
-
+                }                                
+                
                 $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('subscriptions/update', array('data' => $data));

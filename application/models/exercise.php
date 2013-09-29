@@ -1,37 +1,60 @@
 <?php
 
 class Exercise extends CI_Model {
-        
+
     function Exercise() {
         parent::__construct();
     }
 
     function getData() {
         $sql = 'SELECT e. * , m.name AS muscle_name FROM exercises e, muscles m WHERE e.muscles_muscle_id = m.muscle_id';
-        $exercises = $this->db->query($sql);               
+        $exercises = $this->db->query($sql);
         return $exercises->result();
     }
 
     function insert($data) {
         $this->db->set('name', $data['name']);
-        $this->db->set('muscles_muscle_id', $data['muscle_id']);        
+        $this->db->set('muscles_muscle_id', $data['muscle_id']);
         $this->db->insert('exercises');
     }
-    
+
     function update($id, $data) {
         $this->db->where('exercise_id', $id);
-        $this->db->update('exercises',$data);        
+        $this->db->update('exercises', $data);
     }
-    
+
     function delete($id) {
         $this->db->where('exercise_id', $id);
-        $this->db->delete('exercises');        
+        $this->db->delete('exercises');
     }
-    
+
     function getById($id) {
-        $this->db->where('exercise_id',$id);
+        $this->db->where('exercise_id', $id);
         $query = $this->db->get('exercises');
         $exercise = $query->result_array();
         return $exercise[0];
     }
+
+    function getByMuscle($id = null) {
+
+        $this->db->select('exercise_id, name');
+
+        if ($id != NULL) {
+            $this->db->where('muscles_muscle_id', $id);
+        }
+
+        $query = $this->db->get('exercises');
+
+        $exercises = array();
+
+        if ($query->result()) {
+            foreach ($query->result() as $exercise) {
+                $exercises[$exercise->exercise_id] = $exercise->name;
+            }
+            return $exercises;
+        } else {
+            return FALSE;
+        }
+    }
+
 }

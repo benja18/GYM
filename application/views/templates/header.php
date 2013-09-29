@@ -17,6 +17,7 @@
         <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/datatable.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/bootstrap-datepicker.js') ?>"></script>
+        <script src="<?php echo base_url('assets/js/ajax_functions.js') ?>"></script>
     </head>
     <body class="bs-docs-home">        
         <div class="navbar navbar-fixed-top">
@@ -54,7 +55,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url('expenses/create') ?>"><i class="icon-plus"></i> Agregar gasto</a></li>                            
                             <li><a href="<?php echo base_url('expenses/listExpenses') ?>"><i class="icon-list"></i> Ver gastos</a></li>                            
-                            <li><a href="<?php echo base_url('subscriptionTypes/create') ?>"><i class="icon-book"></i> Calcular cuentas</a></li>                            
+                            <li><a href="<?php echo base_url('expenses/earnings') ?>"><i class="icon-book"></i> Calcular cuentas</a></li>                            
                         </ul>
                     </li>
                 </ul>

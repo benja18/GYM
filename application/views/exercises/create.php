@@ -21,7 +21,7 @@
         <?php echo form_open('exercises/create', $attributes); ?>
         <legend>Crear ejercicio</legend>        
         <input name="name" type="text" placeholder="Nombre">        
-
+        
         <select name="muscle_id">
             <?php foreach ($data['muscles'] as $muscle) { ?>
                 <option value="<?php echo $muscle->muscle_id ?>"><?php echo $muscle->name ?></option>
@@ -43,7 +43,7 @@
             <h4>Ejercicio creado</h4>
         </div>
         <div class="modal-footer">
-            <a href="<?php echo base_url('') ?>" class="btn btn-primary">Aceptar</a>        
+            <a href="<?php echo base_url('exercises/listExercises') ?>" class="btn btn-primary">Aceptar</a>        
         </div>
     </div>
     <div class="modal-backdrop fade in"></div>

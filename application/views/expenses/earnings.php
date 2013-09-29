@@ -107,6 +107,15 @@
             }
         });
     });
+    $(document).ready(function() {
+        $('#example2').dataTable({
+            "sDom": "<'row'<'span6'l><'span5 offset1'f>r>t<'row'<'span6'i><'span6'p>>",
+            "sPaginationType": "bootstrap",
+            "oLanguage": {
+                "sLengthMenu": "_MENU_ Registros por página"
+            }
+        });
+    });
 </script>
 <script type="text/javascript">
     function sendId(expense_id) {
@@ -116,70 +125,100 @@
     }
 </script>
 <div class="row span12 offset2">
-    <legend>Gastos</legend>   
-    <div class="row span12">
+    <legend>Ganancias</legend>   
+    <div class="rspan6">
         <?php
-            $attributes = array('role' => 'form', 'class' => 'form-inline', 'id' => 'myform', 'name' => 'create');
-            echo form_open('expenses/listExpenses', $attributes);
+        $attributes = array('role' => 'form', 'class' => 'form-inline', 'id' => 'myform', 'name' => 'create');
+        echo form_open('expenses/earnings', $attributes);
         ?>
         <h5>Buscar por fecha</h5>                
         <input id="dp1" class="input-small" name="start_date" type="text" placeholder="Inicio" readonly="true" style="cursor:pointer;">
         <input id="dp2" class="input-small" name="end_date" type="text" placeholder="Fin" readonly="true" style="cursor:pointer;">
         <button type="submit" class="btn right">Buscar</button>        
         <br><br>
-
-        </form>    
-        <?php if ($data['status'] == 'ShowTable') { ?>
+        </form>
+    </div>    
+    <?php if ($data['status'] == 'ShowTable') { ?>
+        <div class="span6 right offset1">
+            <h5>Gastos: <font color="red"><?php echo '$'.$data['expenses'] ?></font></h5>
+            <h5>Ganancias: <font color="green"><?php echo '$'.$data['winnings'] ?></font></h5>
+            <h5>Total: <font color="<?php if($data['total'] >= 0){echo 'green';} else{ echo 'red';} ?>"><?php echo '$'.$data['total'] ?></font></h5>
         </div>
-        <table class="table table-bordered" id="example">
-            <thead>
-            <tr>       
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Cedula</th>
-                <th>Fecha de Inicio</th>
-                <th>Fecha de Fin</th>
-                <th>Pago</th>
-                <th>Precio</th>
-                <th>Tipo</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (isset($data['subscriptions'])) {
-                foreach ($data['subscriptions'] as $subscription) {
-                    ?>
-                    <tr>                        
-                        <td><strong><?php echo $subscription->name ?></strong></td>
-                        <td><strong><?php echo $subscription->surname ?></strong></td>
-                        <td><strong><?php echo $subscription->ci ?></strong></td>
-                        <td><strong><?php echo date('d-m-Y',  strtotime($subscription->start_date)); ?></strong></td>
-                        <td><strong><?php echo date('d-m-Y',  strtotime($subscription->end_date)); ?></strong></td>
-                        <td><strong><?php if ($subscription->paid == 1){echo 'Si';} else{echo 'No';} ?></strong></td>
-                        <td><strong><?php echo $subscription->price ?></strong></td>
-                        <td><strong><?php echo $subscription->subscription_type ?></strong></td>
-                        <td>
-                            <a class="btn btn-primary btn-mini" href="<?php echo base_url('clients/update?client_id=').$subscription->client_id ?>"><i class="icon-info-sign  icon-white"></i> Ver cliente</a>                            
-                        </td>                                                
+        <div class="row span12">
+            <h4>Gastos</h4>
+            <table class="table table-bordered" id="example">            
+                <thead>
+                    <tr>               
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Fecha</th>                    
                     </tr>
-    <?php } } ?>
-        </tbody>
-    </table>
-        <?php } ?>
-</div>
-<div class="modal hide" id="modal-delete">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3>Mensaje</h3>
-    </div>
-    <div class="modal-body">
-        <p>¿Está seguro que desea eliminar el gasto?</p>
-    </div>
-    <div id="modal-footer" class="modal-footer">        
-    </div>
+                </thead>
+                <tbody>
+                    <?php
+                    if (isset($data['expensesList'])) {
+                        foreach ($data['expensesList'] as $expense) {
+                            ?>
+                            <tr>                        
+                                <td><strong><?php echo $expense->name ?></strong></td>
+                                <td><strong><?php echo $expense->value ?></strong></td>
+                                <td><strong><?php echo $expense->date ?></strong></td>                                                                                                 
+                            </tr>
+                            <?php
+                        }
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="row span12">
+            <br><br>
+            <h4>Ganancias de subscripciones</h4>
+            <table class="table table-bordered" id="example2">
+                <thead>
+                    <tr>       
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cedula</th>
+                        <th>Fecha de Inicio</th>
+                        <th>Fecha de Fin</th>
+                        <th>Pago</th>
+                        <th>Precio</th>
+                        <th>Tipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if (isset($data['subscriptionWinnings'])) {
+                        foreach ($data['subscriptionWinnings'] as $subscription) {
+                            ?>
+                            <tr>                        
+                                <td><strong><?php echo $subscription->name ?></strong></td>
+                                <td><strong><?php echo $subscription->surname ?></strong></td>
+                                <td><strong><?php echo $subscription->ci ?></strong></td>
+                                <td><strong><?php echo date('d-m-Y', strtotime($subscription->start_date)); ?></strong></td>
+                                <td><strong><?php echo date('d-m-Y', strtotime($subscription->end_date)); ?></strong></td>
+                                <td><strong><?php
+                                        if ($subscription->paid == 1) {
+                                            echo 'Si';
+                                        } else {
+                                            echo 'No';
+                                        }
+                                        ?></strong></td>
+                                <td><strong><?php echo $subscription->price ?></strong></td>
+                                <td><strong><?php echo $subscription->subscription_type ?></strong></td>                                                
+                            </tr>
+                        <?php
+                        }
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+<?php } ?>
 </div>
 <script>
-    $(function(){
+    $(function() {
         $('#dp1').datepicker({
             format: 'yyyy-mm-dd'
         });
@@ -188,10 +227,11 @@
 
 </script>
 <script>
-    $(function(){
+    $(function() {
         $('#dp2').datepicker({
             format: 'yyyy-mm-dd'
         });
 
     });
+
 </script>

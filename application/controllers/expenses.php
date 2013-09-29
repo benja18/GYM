@@ -175,4 +175,55 @@ class Expenses extends MY_Controller {
         }
     }
     
+    public function earnings() {
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('start_date', 'Start_date', 'required');
+            $this->form_validation->set_rules('end_date', 'End_date', 'required');            
+
+            if ($this->form_validation->run() === FALSE) {
+
+                $data['status'] = '';
+                $this->load->view('templates/header', array('data' => $this->data));
+                $this->load->helper('form', 'expenses/listExpenses');
+                $this->load->view('expenses/earnings', array('data' => $data));
+                $this->load->view('templates/footer');
+            } else {
+
+                $data['start_date'] = $_POST['start_date'];
+                $data['end_date'] = $_POST['end_date'];
+                
+                $this->load->model('expense');
+                $expensesLosses = $this->expense->lossesList($data['start_date'],$data['end_date']);
+                $losses = $this->expense->losses($data['start_date'],$data['end_date']);
+                
+                $this->load->model('subscription');
+                $subscriptionWinnings = $this->subscription->earningsList($data['start_date'],$data['end_date']);
+                $winnings = $this->subscription->earnings($data['start_date'],$data['end_date']);
+
+                $data['expensesList'] = $expensesLosses;
+                $data['subscriptionWinnings'] = $subscriptionWinnings;                
+                $data['expenses'] = $losses;
+                $data['winnings'] = $winnings;
+                $data['total'] = $winnings-$losses;
+                $data['status'] = 'ShowTable';
+                
+                $this->load->view('templates/header', array('data' => $this->data));
+                $this->load->helper('form');
+                $this->load->view('expenses/earnings', array('data' => $data));
+                $this->load->view('templates/footer');
+            }
+        } else {
+
+            $data['status'] = '';
+            $this->load->view('templates/header', array('data' => $this->data));
+            $this->load->helper('form');
+            $this->load->view('expenses/earnings', array('data' => $data));
+            $this->load->view('templates/footer');
+        }
+    }
+    
 }

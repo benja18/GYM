@@ -1,5 +1,5 @@
 <div class="row-fluid">    
-    <div class="span8 offset1">
+    <div class="span12 offset1">
         <?php if ($data['status'] == 'ValidationError') { ?>
             <div class="alert alert-block alert-error fade in">
                 <button type="button" class="close" data-dismiss="alert">×</button>
@@ -15,11 +15,11 @@
             </div>
         <?php } ?>
         <?php        
-        $attributes = array('role' => 'form', 'class' => 'span3', 'id' => 'myform', 'name' => 'create');
+        $attributes = array('role' => 'form', 'class' => '', 'id' => 'myform', 'name' => 'create');
         ?>
         <?php echo form_open('configurations/updateExpirationInterval', $attributes); ?>
         <legend>Actualizar intervalo de dias de vencimientos</legend>        
-        <input name="configuration_value" type="text" placeholder="Cantidad de dias" value="<?php echo $data['expirationInterval'] ?>">                
+        <input class="span1" name="configuration_value" type="text" placeholder="Cantidad de dias" value="<?php echo $data['expirationInterval'] ?>">                
         <br><br>
         <button type="submit" class="btn">Actualizar</button>        
         </form>

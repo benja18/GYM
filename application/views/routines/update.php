@@ -16,7 +16,7 @@
         <input name="clients_client_id" type="hidden" value="<?php if ($data['status'] != 'RoutineUpdated') {echo $data['clients_client_id']; }?>">        
         <input name="name" type="text" placeholder="Nombre" value="<?php if ($data['status'] != 'RoutineUpdated') {echo $data['name']; }?>"><br><br>        
         <button type="submit" class="btn">Actualizar</button>        
-        </form>                
+        </form>
     </div>
     <div class="span6"></div>
 </div>
@@ -29,7 +29,7 @@
         <h4>Rutina editada</h4>
     </div>
     <div class="modal-footer">
-        <a href="<?php echo base_url('') ?>" class="btn btn-primary">Aceptar</a>        
+        <a href="<?php echo base_url('routines/listClientRoutines?client_id='.$data['clients_client_id']) ?>" class="btn btn-primary">Aceptar</a>        
     </div>
 </div>
 <div class="modal-backdrop fade in"></div>

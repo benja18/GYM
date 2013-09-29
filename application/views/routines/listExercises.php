@@ -110,46 +110,41 @@
     } );
 </script>
 <script type="text/javascript">
-    function sendId(subscription_id){                
-        document.getElementById('modal-footer').innerHTML = "<a href=\"<?php echo base_url('subscriptions/delete?subscription_id=')?>"+subscription_id+"&client_id=<?php echo $_GET['client_id']?>\" class=\"btn btn-primary\">Si</a><a class=\"btn\" data-dismiss=\"modal\">No</a>"
+    function sendId(exercise_id){                
+        document.getElementById('modal-footer').innerHTML = "<a href=\"<?php echo base_url('routines/deleteExercise?exercise_id=')?>"+exercise_id+"&routine_id=<?php echo $_GET['routine_id']?>&client_id=<?php echo $data['client_id']?>\" class=\"btn btn-primary\">Si</a><a class=\"btn\" data-dismiss=\"modal\">No</a>"
 
         $('#modal-delete').modal("show");
     }
 </script>
 <div class="row span12 offset2">
-    <legend>Subscripciones</legend>
+    <legend>Ejercicios</legend>
     <br><br>
     <table class="table table-bordered" id="example">
         <thead>
             <tr>               
-                <th>Fecha de Inicio</th>
-                <th>Fecha de Fin</th>
-                <th>Pago</th>
-                <th>Precio</th>
-                <th>Tipo</th>
+                <th>Nombre</th>
+                <th>Musculo</th>
+                <th>Dia</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <?php if (isset($data['subscriptions'])) {
-                foreach ($data['subscriptions'] as $subscription) {
+            <?php if (isset($data['exercises'])) {
+                foreach ($data['exercises'] as $exercise) {
                     ?>
-                    <tr>                        
-                        <td><strong><?php echo date('d-m-Y',  strtotime($subscription->start_date)); ?></strong></td>
-                        <td><strong><?php echo date('d-m-Y',  strtotime($subscription->end_date)); ?></strong></td>
-                        <td><strong><?php if ($subscription->paid == 1){echo 'Si';} else{echo 'No';} ?></strong></td>
-                        <td><strong><?php echo $subscription->price ?></strong></td>
-                        <td><strong><?php echo $subscription->subscription_type ?></strong></td>
-                        <td>
-                            <a class="btn btn-primary btn-mini" href="<?php echo base_url('subscriptions/update?subscription_id=').$subscription->subscription_id ?>&client_id=<?php echo $_GET['client_id']?>"><i class="icon-edit  icon-white"></i> Editar</a>
-                            <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $subscription->subscription_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                            
+                    <tr>                                                                        
+                        <td><strong><?php echo $exercise->exercise_name ?></strong></td>
+                        <td><strong><?php echo $exercise->muscle_name ?></strong></td>
+                        <td><strong><?php echo $exercise->day ?></strong></td>
+                        <td>                            
+                            <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $exercise->exercise_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                                                       
                         </td>                                                
                     </tr>
     <?php } } ?>
         </tbody>
     </table>
     <br><br><br>
-    <a class="btn btn-primary" href="<?php echo base_url('clients/update?client_id=').$_GET['client_id']?>"><i class="icon-backward  icon-white"></i> Volver al socio</a>
+    <a class="btn btn-primary" href="<?php echo base_url('routines/listClientRoutines?client_id=').$data['client_id']?>"><i class="icon-backward  icon-white"></i> Volver a rutina</a>
 </div>
 <div class="modal hide" id="modal-delete">
     <div class="modal-header">
@@ -157,7 +152,7 @@
         <h3>Mensaje</h3>
     </div>
     <div class="modal-body">
-        <p>¿Está seguro que desea eliminar la subscripcion?</p>
+        <p>¿Está seguro que desea eliminar el ejercicio?</p>
     </div>
     <div id="modal-footer" class="modal-footer">        
     </div>

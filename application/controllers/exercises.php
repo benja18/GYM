@@ -87,11 +87,12 @@ class Exercises extends MY_Controller {
             } else {
 
                 $data['name'] = $_POST['name'];
+                $data['muscles_muscle_id'] = $_POST['muscle_id'];
                 $data['exercise_id'] = $_POST['exercise_id'];
 
                 $this->load->model('exercise');
                 $this->exercise->update($_POST['exercise_id'], $data);
-
+                
                 $data['status'] = 'ExerciseUpdated';
                 
                 $this->load->view('templates/header', array('data' => $this->data));

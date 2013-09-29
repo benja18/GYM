@@ -28,8 +28,8 @@
         <legend>Editar usuario</legend>
         <input name="user_id" type="hidden" placeholder="User Id" value="<?php if ($data['status'] == '') {echo $_GET['user_id']; } else{ echo $data['user_id']; }?>">        
         <input name="username" type="text" placeholder="Nombre de usuario" value="<?php if ($data['status'] != 'UserUpdated') {echo $data['username']; }?>">
-        <input name="password" type="password" placeholder="Contraseña">
-        <input name="passwordCheck" type="password" placeholder="Repita contraseña">
+        <input name="password" type="password" placeholder="Contraseña" value="<?php if ($data['status'] != 'UserUpdated') {echo $data['password']; }?>">
+        <input name="passwordCheck" type="password" placeholder="Repita contraseña" value="<?php if ($data['status'] != 'UserUpdated') {echo $data['password']; }?>">
         <br><br>
         <button type="submit" class="btn">Actualizar</button>        
         </form>                

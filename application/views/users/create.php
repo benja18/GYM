@@ -45,7 +45,7 @@
         <h4>Usuario creado</h4>
     </div>
     <div class="modal-footer">
-        <a href="<?php echo base_url('') ?>" class="btn btn-primary">Aceptar</a>        
+        <a href="<?php echo base_url('users/listUsers') ?>" class="btn btn-primary">Aceptar</a>        
     </div>
 </div>
 <div class="modal-backdrop fade in"></div>

@@ -39,5 +39,28 @@ class Routine extends CI_Model {
         $routine = $query->result_array();
         return $routine[0];
     }
-
+    
+    function insertExercise($data) {
+        $this->db->set('exercises_exercise_id', $data['exercises_exercise_id']);
+        $this->db->set('routines_routine_id', $data['routines_routine_id']);
+        $this->db->set('day', $data['day']);
+        $this->db->insert('exercises_has_routines');
+    }
+    
+    function getExercises($id) {
+        $sql = 'SELECT e.exercise_id, e.name as exercise_name, e.muscles_muscle_id, m.name as muscle_name, ehr.day FROM exercises e, muscles m, exercises_has_routines ehr WHERE ehr.exercises_exercise_id = e.exercise_id AND m.muscle_id = e.muscles_muscle_id AND ehr.routines_routine_id ='.$id;
+        $routines = $this->db->query($sql);               
+        return $routines->result();
+    }
+    
+    function deleteExercise($routineId,$exerciseId) {
+        $this->db->where('routines_routine_id', $routineId);
+        $this->db->where('exercises_exercise_id', $exerciseId);
+        $this->db->delete('exercises_has_routines');
+    }
+    
+    function deleteAllExercises($routineId) {
+        $this->db->where('routines_routine_id', $routineId);        
+        $this->db->delete('exercises_has_routines');
+    }
 }

@@ -19,7 +19,7 @@
         ?>
         <?php echo form_open('subscriptions/update', $attributes); ?>
         <legend>Editar subscripcion</legend>      
-        <input name="subscription_id" type="hidden" placeholder="Subscription Id" value="<?php if ($data['status'] == '') {echo $_GET['subscription_id']; } elseif($data['status'] != 'SubscriptionUpdated'){ echo $data['subscription']['subscription_id']; }?>">              
+        <input name="subscription_id" type="hidden" placeholder="Subscription Id" value="<?php if ($data['status'] == '') {echo $_GET['subscription_id']; } elseif($data['status'] != 'SubscriptionUpdated'){ echo $data['subscription']['subscription_id']; }?>">
         <input id="dp1" name="start_date" type="text" placeholder="Fecha de Inicio" readonly="true" style="cursor:pointer;" value="<?php if ($data['status'] != 'SubscriptionUpdated') {echo $data['subscription']['start_date']; }?>">
         <input id="dp2" name="end_date" type="text" placeholder="Fecha de Fin" readonly="true" style="cursor:pointer;" value="<?php if ($data['status'] != 'SubscriptionUpdated') {echo $data['subscription']['end_date']; }?>">
         <label class="checkbox">
@@ -47,7 +47,7 @@
         <h4>Subscripcion editada</h4>
     </div>
     <div class="modal-footer">
-        <a href="<?php echo base_url('') ?>" class="btn btn-primary">Aceptar</a>        
+        <a href="<?php echo base_url('subscriptions/listClientSubscriptions?client_id='.$data['clients_client_id']) ?>" class="btn btn-primary">Aceptar</a>        
     </div>
 </div>
 <div class="modal-backdrop fade in"></div>

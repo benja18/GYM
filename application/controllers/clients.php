@@ -154,7 +154,11 @@ class Clients extends MY_Controller {
 
         $this->load->model('client');
         $this->client->delete($id);
-
+        
+        if ($this->db->_error_number() == 1451) {
+            $data['status'] = 'CantDelete';
+        }
+        
         $clients = $this->client->getData();
 
         $data['clients'] = $clients;
