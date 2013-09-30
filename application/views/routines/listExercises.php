@@ -110,8 +110,8 @@
     } );
 </script>
 <script type="text/javascript">
-    function sendId(exercise_id){                
-        document.getElementById('modal-footer').innerHTML = "<a href=\"<?php echo base_url('routines/deleteExercise?exercise_id=')?>"+exercise_id+"&routine_id=<?php echo $_GET['routine_id']?>&client_id=<?php echo $data['client_id']?>\" class=\"btn btn-primary\">Si</a><a class=\"btn\" data-dismiss=\"modal\">No</a>"
+    function sendId(exercise_id,day){                
+        document.getElementById('modal-footer').innerHTML = "<a href=\"<?php echo base_url('routines/deleteExercise?exercise_id=')?>"+exercise_id+"&routine_id=<?php echo $_GET['routine_id']?>&client_id=<?php echo $data['client_id']?>&day="+day+"\" class=\"btn btn-primary\">Si</a><a class=\"btn\" data-dismiss=\"modal\">No</a>"
 
         $('#modal-delete').modal("show");
     }
@@ -137,7 +137,7 @@
                         <td><strong><?php echo $exercise->muscle_name ?></strong></td>
                         <td><strong><?php echo $exercise->day ?></strong></td>
                         <td>                            
-                            <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $exercise->exercise_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                                                       
+                            <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $exercise->exercise_id ?>,<?php echo "'".$exercise->day."'" ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                                                       
                         </td>                                                
                     </tr>
     <?php } } ?>

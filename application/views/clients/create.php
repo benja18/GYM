@@ -15,7 +15,7 @@
             </div>
         <?php } ?>
         <?php        
-        $attributes = array('role' => 'form', 'class' => 'span4', 'id' => 'myform', 'name' => 'create');
+        $attributes = array('role' => 'form', 'class' => 'span3', 'id' => 'myform', 'name' => 'create');
         ?>
         <?php echo form_open('clients/create', $attributes); ?>
         <legend>Crear Socio</legend>        

@@ -212,9 +212,10 @@ class Routines extends MY_Controller {
         $routineId = $_GET['routine_id'];
         $exerciseId = $_GET['exercise_id'];
         $clientId = $_GET['client_id'];
+        $day = $_GET['day'];
         
         $this->load->model('routine');
-        $this->routine->deleteExercise($routineId,$exerciseId);
+        $this->routine->deleteExercise($routineId,$exerciseId,$day);
 
         $exercises = $this->routine->getExercises($routineId);
 

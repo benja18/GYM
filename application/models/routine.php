@@ -53,9 +53,10 @@ class Routine extends CI_Model {
         return $routines->result();
     }
     
-    function deleteExercise($routineId,$exerciseId) {
+    function deleteExercise($routineId,$exerciseId,$day) {
         $this->db->where('routines_routine_id', $routineId);
         $this->db->where('exercises_exercise_id', $exerciseId);
+        $this->db->where('day', $day);
         $this->db->delete('exercises_has_routines');
     }
     
