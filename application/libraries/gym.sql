@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2013 at 05:35 AM
+-- Generation Time: Sep 30, 2013 at 03:30 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -35,12 +35,13 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `ci` varchar(45) DEFAULT NULL,
   `birth` date DEFAULT NULL,
   `address` varchar(128) DEFAULT NULL,
+  `phone` varchar(32) DEFAULT NULL,
   `mail` varchar(64) DEFAULT NULL,
   `emergency` varchar(45) DEFAULT NULL,
   `ocupation` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`client_id`),
   UNIQUE KEY `ci_UNIQUE` (`ci`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -50,42 +51,18 @@ CREATE TABLE IF NOT EXISTS `clients` (
 
 CREATE TABLE IF NOT EXISTS `configurations` (
   `configuration_id` int(11) NOT NULL AUTO_INCREMENT,
-  `key` varchar(45) NOT NULL,
-  `value` varchar(45) NOT NULL,
+  `configuration_key` varchar(45) NOT NULL,
+  `configuration_value` varchar(45) NOT NULL,
   PRIMARY KEY (`configuration_id`),
-  UNIQUE KEY `key_UNIQUE` (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+  UNIQUE KEY `key_UNIQUE` (`configuration_key`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Table structure for table `days`
+-- Dumping data for table `configurations`
 --
 
-CREATE TABLE IF NOT EXISTS `days` (
-  `day_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `routines_routine_id` int(11) NOT NULL,
-  PRIMARY KEY (`day_id`,`routines_routine_id`),
-  UNIQUE KEY `name_UNIQUE` (`name`),
-  KEY `fk_days_routines1_idx` (`routines_routine_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `days_has_exercises`
---
-
-CREATE TABLE IF NOT EXISTS `days_has_exercises` (
-  `days_day_id` int(11) NOT NULL,
-  `days_routines_routine_id` int(11) NOT NULL,
-  `exercises_exercise_id` int(11) NOT NULL,
-  `exercises_muscles_muscle_id` int(11) NOT NULL,
-  PRIMARY KEY (`days_day_id`,`days_routines_routine_id`,`exercises_exercise_id`,`exercises_muscles_muscle_id`),
-  KEY `fk_days_has_exercises_exercises1_idx` (`exercises_exercise_id`,`exercises_muscles_muscle_id`),
-  KEY `fk_days_has_exercises_days1_idx` (`days_day_id`,`days_routines_routine_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `configurations` (`configuration_id`, `configuration_key`, `configuration_value`) VALUES
+(1, 'EXPIRATION_INTERVAL_DAYS', '5');
 
 -- --------------------------------------------------------
 
@@ -99,7 +76,21 @@ CREATE TABLE IF NOT EXISTS `exercises` (
   `muscles_muscle_id` int(11) NOT NULL,
   PRIMARY KEY (`exercise_id`,`muscles_muscle_id`),
   KEY `fk_exercises_muscles1_idx` (`muscles_muscle_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exercises_has_routines`
+--
+
+CREATE TABLE IF NOT EXISTS `exercises_has_routines` (
+  `day` varchar(45) DEFAULT NULL,
+  `exercises_exercise_id` int(11) NOT NULL,
+  `routines_routine_id` int(11) NOT NULL,
+  KEY `fk_exercises_has_routines_exercises1_idx` (`exercises_exercise_id`),
+  KEY `fk_exercises_has_routines_routines1_idx` (`routines_routine_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -111,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `expenses` (
   `expense_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) DEFAULT NULL,
   `value` int(11) DEFAULT NULL,
-  `date` datetime DEFAULT NULL,
+  `date` date DEFAULT NULL,
   PRIMARY KEY (`expense_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -126,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `muscles` (
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`muscle_id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -153,13 +144,13 @@ CREATE TABLE IF NOT EXISTS `subscriptions` (
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `paid` tinyint(1) NOT NULL,
-  `price` int(11) NOT NULL,
+  `price` int(11) DEFAULT NULL,
   `clients_client_id` int(11) NOT NULL,
   `subscription_types_subscription_type_id` int(11) NOT NULL,
   PRIMARY KEY (`subscription_id`,`clients_client_id`),
   KEY `fk_subscription_clients1_idx` (`clients_client_id`),
   KEY `fk_subscriptions_subscription_types1_idx` (`subscription_types_subscription_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -171,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `subscription_types` (
   `subscription_type_id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(45) NOT NULL,
   PRIMARY KEY (`subscription_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -185,30 +176,31 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(45) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `userscol_UNIQUE` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `password`) VALUES
+(1, 'admin', 'e2a7106f1cc8bb1e1318df70aa0a3540');
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `days`
---
-ALTER TABLE `days`
-  ADD CONSTRAINT `fk_days_routines1` FOREIGN KEY (`routines_routine_id`) REFERENCES `routines` (`routine_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `days_has_exercises`
---
-ALTER TABLE `days_has_exercises`
-  ADD CONSTRAINT `fk_days_has_exercises_days1` FOREIGN KEY (`days_day_id`, `days_routines_routine_id`) REFERENCES `days` (`day_id`, `routines_routine_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_days_has_exercises_exercises1` FOREIGN KEY (`exercises_exercise_id`, `exercises_muscles_muscle_id`) REFERENCES `exercises` (`exercise_id`, `muscles_muscle_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Constraints for table `exercises`
 --
 ALTER TABLE `exercises`
   ADD CONSTRAINT `fk_exercises_muscles1` FOREIGN KEY (`muscles_muscle_id`) REFERENCES `muscles` (`muscle_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `exercises_has_routines`
+--
+ALTER TABLE `exercises_has_routines`
+  ADD CONSTRAINT `fk_exercises_has_routines_exercises1` FOREIGN KEY (`exercises_exercise_id`) REFERENCES `exercises` (`exercise_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_exercises_has_routines_routines1` FOREIGN KEY (`routines_routine_id`) REFERENCES `routines` (`routine_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `routines`
@@ -220,8 +212,8 @@ ALTER TABLE `routines`
 -- Constraints for table `subscriptions`
 --
 ALTER TABLE `subscriptions`
-  ADD CONSTRAINT `fk_subscriptions_subscription_types1` FOREIGN KEY (`subscription_types_subscription_type_id`) REFERENCES `subscription_types` (`subscription_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_subscription_clients1` FOREIGN KEY (`clients_client_id`) REFERENCES `clients` (`client_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_subscription_clients1` FOREIGN KEY (`clients_client_id`) REFERENCES `clients` (`client_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_subscriptions_subscription_types1` FOREIGN KEY (`subscription_types_subscription_type_id`) REFERENCES `subscription_types` (`subscription_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
