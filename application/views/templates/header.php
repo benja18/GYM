@@ -1,3 +1,9 @@
+<?php
+if (!$this->session->userdata('logged_in')) {
+//Not logged in, redirect to a public page
+    redirect('home', 'refresh');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,7 +13,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>GYM</title>
+        <title>Habana GYM</title>
 
         <!-- Bootstrap core CSS -->     
         <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
@@ -22,7 +28,7 @@
     <body class="bs-docs-home">        
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
-                <a class="brand" href="<?php echo base_url() ?>">Habana Gym</a>
+                <a class="brand" href="<?php echo base_url('home') ?>">Habana Gym</a>
                 <ul class="nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-exclamation-sign"></i> Vencimientos<b class="caret"></b> <span class="badge badge-important"><?php echo $data['nextExpirationsCounter']; ?></span></a>
@@ -71,7 +77,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-off"></i><b class="caret"></b></a>                                
                         <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url('users/create') ?>"><i class="icon-share-alt"></i> Cerrar sesion</a></li>                            
+                            <li><a href="<?php echo base_url('home/logout') ?>"><i class="icon-share-alt"></i> Cerrar sesion</a></li>                            
                         </ul>
                     </li>                   
                 </ul>
