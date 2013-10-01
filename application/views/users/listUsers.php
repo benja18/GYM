@@ -134,6 +134,7 @@
                         <td><strong><?php echo $user->username ?></strong></td>
                         <td>
                             <a class="btn btn-primary btn-mini" href="<?php echo base_url('users/update?user_id=').$user->user_id ?>"><i class="icon-edit  icon-white"></i> Editar</a>
+                            <a class="btn btn-primary btn-mini" href="<?php echo base_url('users/updatePassword?user_id=').$user->user_id ?>"><i class="icon-edit  icon-white"></i> Cambiar password</a>
                             <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $user->user_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                            
                         </td>                                                
                     </tr>

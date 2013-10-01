@@ -78,7 +78,6 @@ class Users extends MY_Controller {
             $this->load->helper('form');
             $this->load->library('form_validation');
             $this->form_validation->set_rules('username', 'Username', 'required');
-            $this->form_validation->set_rules('password', 'Password', 'required');
 
             if ($this->form_validation->run() === FALSE) {
 
@@ -95,31 +94,21 @@ class Users extends MY_Controller {
             } else {
 
                 $data['username'] = $_POST['username'];
-                $data['password'] = md5($_POST['password']);
                 $data['user_id'] = $_POST['user_id'];
 
-                if ($data['password'] == md5($_POST['passwordCheck'])) {
-                    $this->load->model('user');
-                    $this->user->update($_POST['user_id'], $data);
+                $this->load->model('user');
+                $this->user->update($_POST['user_id'], $data);
 
-                    if ($this->db->_error_number() == 1062) {
-                        $data['status'] = 'UsernameDuplicated';
-                    } else {
-                        $data['status'] = 'UserUpdated';
-                    }
-
-                    $this->load->view('templates/header', array('data' => $this->data));
-                    $this->load->helper('form');
-                    $this->load->view('users/update', array('data' => $data));
-                    $this->load->view('templates/footer');
+                if ($this->db->_error_number() == 1062) {
+                    $data['status'] = 'UsernameDuplicated';
                 } else {
-
-                    $data['status'] = 'WrongPasswords';
-                    $this->load->view('templates/header', array('data' => $this->data));
-                    $this->load->helper('form');
-                    $this->load->view('users/update', array('data' => $data));
-                    $this->load->view('templates/footer');
+                    $data['status'] = 'UserUpdated';
                 }
+
+                $this->load->view('templates/header', array('data' => $this->data));
+                $this->load->helper('form');
+                $this->load->view('users/update', array('data' => $data));
+                $this->load->view('templates/footer');
             }
         } else {
 
@@ -139,15 +128,79 @@ class Users extends MY_Controller {
         $id = $_GET['user_id'];
 
         $this->load->model('user');
-        $this->user->delete($id);        
-        
+        $this->user->delete($id);
+
         $users = $this->user->getData(); //llamamos a la función getData() del modelo creado anteriormente.
 
-        $data['users'] = $users;        
+        $data['users'] = $users;
         //load de vistas
         $this->load->view('templates/header', array('data' => $this->data));
         $this->load->view('users/listUsers', array('data' => $data)); //llamada a la vista, que crearemos posteriormente
         $this->load->view('templates/footer');
+    }
+
+    public function updatePassword() {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('oldPassword', 'OldPassword', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('passwordCheck', 'PasswordCheck', 'required');
+
+            if ($this->form_validation->run() === FALSE) {
+
+                $this->load->model('user');
+                $data = $this->user->getById($_POST['user_id']);
+
+                $data['status'] = 'ValidationError';
+                $data['user_id'] = $_POST['user_id'];
+
+                $this->load->view('templates/header', array('data' => $this->data));
+                $this->load->helper('form');
+                $this->load->view('users/updatePassword', array('data' => $data));
+                $this->load->view('templates/footer');
+            } else {
+
+                $oldPassword = md5($_POST['oldPassword']);
+                $data['password'] = md5($_POST['password']);                
+
+                if ($data['password'] == md5($_POST['passwordCheck'])) {
+                    
+                    $this->load->model('user');
+                    $user = $this->user->getById($_POST['user_id']);
+                    
+                    if($user['password'] == $oldPassword){
+                        $this->user->update($_POST['user_id'], $data);
+                        $data['status'] = 'UserUpdated';
+                    } else{
+                        $data['status'] = 'WrongOldPassword';
+                    }
+                    $data['user_id'] = $_POST['user_id'];
+                    $this->load->view('templates/header', array('data' => $this->data));
+                    $this->load->helper('form');
+                    $this->load->view('users/updatePassword', array('data' => $data));
+                    $this->load->view('templates/footer');
+                } else {
+                    $data['user_id'] = $_POST['user_id'];
+                    $data['status'] = 'WrongPasswords';
+                    $this->load->view('templates/header', array('data' => $this->data));
+                    $this->load->helper('form');
+                    $this->load->view('users/updatePassword', array('data' => $data));
+                    $this->load->view('templates/footer');
+                }
+            }
+        } else {
+
+            $this->load->model('user');
+            $data = $this->user->getById($_GET['user_id']);
+            $data['status'] = "";
+            $this->load->view('templates/header', array('data' => $this->data));
+            $this->load->helper('form');
+            $this->load->view('users/updatePassword', array('data' => $data));
+            $this->load->view('templates/footer');
+        }
     }
 
 }
