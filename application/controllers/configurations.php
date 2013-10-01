@@ -38,7 +38,7 @@ class Configurations extends MY_Controller {
                 } else {
                     $data['status'] = 'IntervalNumericError';
                 }
-                
+
                 $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('configurations/updateExpirationInterval', array('data' => $data));
@@ -51,6 +51,23 @@ class Configurations extends MY_Controller {
             $this->load->view('configurations/updateExpirationInterval', array('data' => $data));
             $this->load->view('templates/footer');
         }
+    }
+
+    public function backup() {
+
+        $dbhost = 'localhost';
+        $dbuser = 'root';
+        $dbpass = 'root18';
+        $dbname = 'gym';
+
+        $db = mysql_connect('localhost', 'root', 'root18') or die("Error connecting to database.");
+        mysql_select_db('gym', $db) or die("Couldn't select the database.");
+        
+        $date = date('m-d-Y');
+        $command = 'C:\\xampp\\mysql\\bin\\mysqldump.exe -hlocalhost -uroot -proot18 gym > C:\\GymBackup\\dbBackup-'.$date.'.sql';  
+        system($command);
+        mysql_close($db);       
+        redirect('home', 'refresh');
     }
 
 }

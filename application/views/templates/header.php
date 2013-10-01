@@ -72,6 +72,7 @@ if (!$this->session->userdata('logged_in')) {
                             <li><a href="<?php echo base_url('users/create') ?>"><i class="icon-plus"></i> Agregar usuario</a></li>
                             <li><a href="<?php echo base_url('users/listUsers') ?>"><i class="icon-list"></i> Ver usuarios</a></li>
                             <li><a href="<?php echo base_url('configurations/updateExpirationInterval') ?>"><i class="icon-calendar"></i> Alerta de expiracion</a></li>
+                            <li><a href="<?php echo base_url('configurations/backup') ?>"><i class="icon-hdd"></i> Backup</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
