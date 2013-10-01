@@ -18,8 +18,8 @@ class Subscriptions extends MY_Controller {
             $this->form_validation->set_rules('end_date', 'End_date', 'required');
             $this->form_validation->set_rules('price', 'Price', 'required');
             $data['clients_client_id'] = $_POST['clients_client_id'];
-            $this->load->model('subscriptionType');
-            $subscriptionTypes = $this->subscriptionType->getData();
+            $this->load->model('subscription_type');
+            $subscriptionTypes = $this->subscription_type->getData();
             $data['subscription_types'] = $subscriptionTypes;
 
             if ($this->form_validation->run() === FALSE) {
@@ -55,8 +55,8 @@ class Subscriptions extends MY_Controller {
             }
         } else {
             $data['status'] = '';
-            $this->load->model('subscriptionType');
-            $subscriptionTypes = $this->subscriptionType->getData();
+            $this->load->model('subscription_type');
+            $subscriptionTypes = $this->subscription_type->getData();
             $data['subscription_types'] = $subscriptionTypes;
             $this->load->view('templates/header', array('data' => $this->data));
             $this->load->helper('form');
@@ -83,8 +83,8 @@ class Subscriptions extends MY_Controller {
                 $data['clients_client_id'] = $_POST['clients_client_id'];
                 $data['subscription_id'] = $_POST['subscription_id'];
 
-                $this->load->model('subscriptionType');
-                $subscriptionTypes = $this->subscriptionType->getData();
+                $this->load->model('subscription_type');
+                $subscriptionTypes = $this->subscription_type->getData();
                 $data['subscription_types'] = $subscriptionTypes;
 
                 $this->load->view('templates/header', array('data' => $this->data));
@@ -113,8 +113,8 @@ class Subscriptions extends MY_Controller {
                     $data['clients_client_id'] = $_POST['clients_client_id'];
                     $data['subscription_id'] = $_POST['subscription_id'];
 
-                    $this->load->model('subscriptionType');
-                    $subscriptionTypes = $this->subscriptionType->getData();
+                    $this->load->model('subscription_type');
+                    $subscriptionTypes = $this->subscription_type->getData();
                     $data['subscription_types'] = $subscriptionTypes;
                 }                                
                 
@@ -126,8 +126,8 @@ class Subscriptions extends MY_Controller {
         } else {
 
             $data['status'] = '';
-            $this->load->model('subscriptionType');
-            $subscriptionTypes = $this->subscriptionType->getData();
+            $this->load->model('subscription_type');
+            $subscriptionTypes = $this->subscription_type->getData();
             $data['subscription_types'] = $subscriptionTypes;
 
             $this->load->model('subscription');

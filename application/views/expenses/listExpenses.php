@@ -135,31 +135,22 @@
             <thead>
             <tr>       
                 <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Cedula</th>
-                <th>Fecha de Inicio</th>
-                <th>Fecha de Fin</th>
-                <th>Pago</th>
-                <th>Precio</th>
-                <th>Tipo</th>
+                <th>Gasto</th>
+                <th>Fecha</th>                
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <?php if (isset($data['subscriptions'])) {
-                foreach ($data['subscriptions'] as $subscription) {
+            <?php if (isset($data['expenses'])) {
+                foreach ($data['expenses'] as $expense) {
                     ?>
                     <tr>                        
-                        <td><strong><?php echo $subscription->name ?></strong></td>
-                        <td><strong><?php echo $subscription->surname ?></strong></td>
-                        <td><strong><?php echo $subscription->ci ?></strong></td>
-                        <td><strong><?php echo date('d-m-Y',  strtotime($subscription->start_date)); ?></strong></td>
-                        <td><strong><?php echo date('d-m-Y',  strtotime($subscription->end_date)); ?></strong></td>
-                        <td><strong><?php if ($subscription->paid == 1){echo 'Si';} else{echo 'No';} ?></strong></td>
-                        <td><strong><?php echo $subscription->price ?></strong></td>
-                        <td><strong><?php echo $subscription->subscription_type ?></strong></td>
+                        <td><strong><?php echo $expense->name ?></strong></td>
+                        <td><strong><?php echo '$'.$expense->value ?></strong></td>                        
+                        <td><strong><?php echo date('d-m-Y',  strtotime($expense->date)); ?></strong></td>                        
                         <td>
-                            <a class="btn btn-primary btn-mini" href="<?php echo base_url('clients/update?client_id=').$subscription->client_id ?>"><i class="icon-info-sign  icon-white"></i> Ver cliente</a>                            
+                            <a class="btn btn-primary btn-mini" href="<?php echo base_url('expenses/update?expense_id=') . $expense->expense_id ?>"><i class="icon-edit  icon-white"></i> Editar</a>
+                            <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $expense->expense_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                            
                         </td>                                                
                     </tr>
     <?php } } ?>

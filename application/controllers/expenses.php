@@ -124,11 +124,12 @@ class Expenses extends MY_Controller {
         $this->load->model('expense');
         $this->expense->delete($id);
 
-        $expenses = $this->expense->getData();
+        //$expenses = $this->expense->getData();
 
-        $data['expenses'] = $expenses;
+        //$data['expenses'] = $expenses;
         
         $this->load->view('templates/header', array('data' => $this->data));
+        $this->load->helper('form');
         $this->load->view('expenses/listExpenses', array('data' => $data));
         $this->load->view('templates/footer');
     }

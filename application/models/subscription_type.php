@@ -1,8 +1,8 @@
 <?php
 
-class SubscriptionType extends CI_Model {
+class Subscription_type extends CI_Model {
         
-    function SubscriptionType() {
+    function Subscription_type() {
         parent::__construct();
     }
 

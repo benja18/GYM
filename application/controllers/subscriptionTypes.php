@@ -23,8 +23,8 @@ class SubscriptionTypes extends MY_Controller {
             } else {
                 $data['description'] = $_POST['description'];
 
-                $this->load->model('subscriptionType');
-                $this->subscriptionType->insert($data);
+                $this->load->model('subscription_type');
+                $this->subscription_type->insert($data);
                 
                 $data['status'] = 'SubscriptionTypeInserted';                
 
@@ -45,8 +45,8 @@ class SubscriptionTypes extends MY_Controller {
 
     public function listSubscriptionTypes() {
         $data['status'] = '';
-        $this->load->model('subscriptionType');
-        $subscriptionTypes = $this->subscriptionType->getData();
+        $this->load->model('subscription_type');
+        $subscriptionTypes = $this->subscription_type->getData();
 
         $data['subscriptionTypes'] = $subscriptionTypes;
 
@@ -65,8 +65,8 @@ class SubscriptionTypes extends MY_Controller {
 
             if ($this->form_validation->run() === FALSE) {
 
-                $this->load->model('subscriptionType');
-                $data = $this->subscriptionType->getById($_POST['subscription_type_id']);
+                $this->load->model('subscription_type');
+                $data = $this->subscription_type->getById($_POST['subscription_type_id']);
 
                 $data['status'] = 'ValidationError';
                 $data['subscription_type_id'] = $_POST['subscription_type_id'];
@@ -80,8 +80,8 @@ class SubscriptionTypes extends MY_Controller {
                 $data['description'] = $_POST['description'];
                 $data['subscription_type_id'] = $_POST['subscription_type_id'];
 
-                $this->load->model('subscriptionType');
-                $this->subscriptionType->update($_POST['subscription_type_id'], $data);
+                $this->load->model('subscription_type');
+                $this->subscription_type->update($_POST['subscription_type_id'], $data);
                 
                 $data['status'] = 'SubscriptionTypeUpdated';
 
@@ -92,8 +92,8 @@ class SubscriptionTypes extends MY_Controller {
             }
         } else {
 
-            $this->load->model('subscriptionType');
-            $data = $this->subscriptionType->getById($_GET['subscription_type_id']);
+            $this->load->model('subscription_type');
+            $data = $this->subscription_type->getById($_GET['subscription_type_id']);
             $data['status'] = "";
             $this->load->view('templates/header', array('data' => $this->data));
             $this->load->helper('form');
@@ -106,17 +106,17 @@ class SubscriptionTypes extends MY_Controller {
 
         $data['status'] = '';
 
-        $this->load->model('subscriptionType');
+        $this->load->model('subscription_type');
         $id = $_GET['subscription_type_id'];
 
-        $this->load->model('subscriptionType');
-        $this->subscriptionType->delete($id);
+        $this->load->model('subscription_type');
+        $this->subscription_type->delete($id);
 
         if ($this->db->_error_number() == 1451) {
             $data['status'] = 'CantDelete';
         }
 
-        $subscriptionTypes = $this->subscriptionType->getData();
+        $subscriptionTypes = $this->subscription_type->getData();
 
         $data['subscriptionTypes'] = $subscriptionTypes;
         //load de vistas
