@@ -14,13 +14,14 @@ class Subscription_type extends CI_Model {
 
     function insert($data) {
         $this->db->set('description', $data['description']);        
+        $this->db->set('days', $data['days']); 
         $this->db->insert('subscription_types');
     }
     
     
     function update($id, $data) {
         $this->db->where('subscription_type_id', $id);
-        $this->db->update('subscription_types',$data);        
+        $this->db->update('subscription_types',$data);
     }
     
     function delete($id) {

@@ -129,6 +129,7 @@
         <thead>
             <tr>               
                 <th>Descripcion</th>
+                <th>Cantidad de dias</th>
                 <th>Acciones</th>              
             </tr>
         </thead>
@@ -139,6 +140,7 @@
                     ?>
                     <tr>                        
                         <td><strong><?php echo $subscriptionType->description ?></strong></td>
+                        <td><strong><?php echo $subscriptionType->days ?></strong></td>
                         <td>
                             <a class="btn btn-primary btn-mini" href="<?php echo base_url('subscriptionTypes/update?subscription_type_id=') . $subscriptionType->subscription_type_id ?>"><i class="icon-edit  icon-white"></i> Editar</a>
                             <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $subscriptionType->subscription_type_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                            

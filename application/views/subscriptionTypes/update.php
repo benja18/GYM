@@ -7,6 +7,13 @@
                 <p>Debes completar todos los campos.</p>
             </div>
         <?php } ?>
+        <?php if ($data['status'] == 'InvalidDays') { ?>
+            <div class="alert alert-block alert-error fade in">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <h4 class="alert-heading">Error!</h4>
+                <p>La cantidad de dias debe ser un numero.</p>
+            </div>
+        <?php } ?>
         <?php        
         $attributes = array('role' => 'form', 'class' => 'span4', 'id' => 'myform', 'name' => 'update', 'action' => '');
         ?>
@@ -14,6 +21,7 @@
         <legend>Editar tipo de subscripcion</legend>
         <input name="subscription_type_id" type="hidden" placeholder="Subscription Type Id" value="<?php if ($data['status'] == '') {echo $_GET['subscription_type_id']; } else{ echo $data['subscription_type_id']; }?>">        
         <input name="description" type="text" placeholder="Description" value="<?php if ($data['status'] != 'SubscriptionTypeUpdated') {echo $data['description']; }?>">
+        <input name="days" type="text" placeholder="Cantidad de dias" value="<?php if ($data['status'] != 'SubscriptionTypeUpdated') {echo $data['days']; }?>">
         <br><br>
         <button type="submit" class="btn">Actualizar</button>        
         </form>                

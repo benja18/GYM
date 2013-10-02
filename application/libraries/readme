@@ -1,3 +1,5 @@
 1-DB root root18
 2-Add Folder GymBackup on C:/ and give all permissions for all users
 3-Make xampp init on start and set apache and mysql to autostart
+
+ALTER TABLE  `subscription_types` ADD  `days` INT NOT NULL AFTER  `description`
