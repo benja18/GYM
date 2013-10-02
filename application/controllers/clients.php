@@ -16,12 +16,6 @@ class Clients extends MY_Controller {
             $this->form_validation->set_rules('surname', 'Surname', 'required');
             $this->form_validation->set_rules('ci', 'Ci', 'required');
             $this->form_validation->set_rules('birth', 'Birth', 'required');
-            $this->form_validation->set_rules('address', 'Address', 'required');
-            $this->form_validation->set_rules('phone', 'Phone', 'required');
-            $this->form_validation->set_rules('mail', 'Mail', 'required');
-            $this->form_validation->set_rules('emergency', 'Emergency', 'required');
-            $this->form_validation->set_rules('ocupation', 'Ocupation', 'required');
-
 
             if ($this->form_validation->run() === FALSE) {
                 $data['status'] = 'ValidationError';
@@ -43,8 +37,7 @@ class Clients extends MY_Controller {
 
                 $this->load->model('client');
                 $this->client->insert($data);
-                
-                echo $data['birth'];
+                                
                 if ($this->db->_error_number() == 1062) {
                     $data['status'] = 'CiDuplicated';
                 } else {
@@ -54,7 +47,7 @@ class Clients extends MY_Controller {
                 $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('clients/create', array('data' => $data));
-                $this->load->view('templates/footer');
+                $this->load->view('templates/footer');                
             }
         } else {
             $data['status'] = '';
@@ -89,11 +82,6 @@ class Clients extends MY_Controller {
             $this->form_validation->set_rules('surname', 'Surname', 'required');
             $this->form_validation->set_rules('ci', 'Ci', 'required');
             $this->form_validation->set_rules('birth', 'Birth', 'required');
-            $this->form_validation->set_rules('address', 'Address', 'required');
-            $this->form_validation->set_rules('phone', 'Phone', 'required');
-            $this->form_validation->set_rules('mail', 'Mail', 'required');
-            $this->form_validation->set_rules('emergency', 'Emergency', 'required');
-            $this->form_validation->set_rules('ocupation', 'Ocupation', 'required');
 
             if ($this->form_validation->run() === FALSE) {
 
@@ -133,7 +121,7 @@ class Clients extends MY_Controller {
                 $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('clients/update', array('data' => $data));
-                $this->load->view('templates/footer');
+                $this->load->view('templates/footer');                
             }
         } else {
 
