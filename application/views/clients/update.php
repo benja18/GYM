@@ -63,9 +63,10 @@
 <?php } ?>  
 <script>
     $(function(){
-        $('#dp1').datepicker({
-            format: 'dd-mm-yyyy'
+        checkin = $('#dp1').datepicker({
+            format: 'dd-mm-yyyy'            
+        }).on('changeDate', function(ev) {         
+          checkin.datepicker('hide');
         });
-
     });
 </script>

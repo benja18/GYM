@@ -171,15 +171,19 @@
 </div>
 <script>
     $(function(){
-        $('#dp1').datepicker({
+        checkin = $('#dp1').datepicker({
             format: 'dd-mm-yyyy'            
+        }).on('changeDate', function(ev) {         
+          checkin.datepicker('hide');
         });
     });
 </script>
 <script>
     $(function(){
-        $('#dp2').datepicker({
+        checkin = $('#dp2').datepicker({
             format: 'dd-mm-yyyy'            
+        }).on('changeDate', function(ev) {         
+          checkin.datepicker('hide');
         });
     });
 </script>
