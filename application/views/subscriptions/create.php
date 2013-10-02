@@ -19,8 +19,8 @@
         ?>
         <?php echo form_open('subscriptions/create', $attributes); ?>
         <legend>Crear subscripcion</legend>                
-        <input id="dp1" name="start_date" type="text" placeholder="Fecha de Inicio" readonly="true" style="cursor:pointer;">
-        <input id="dp2" name="end_date" type="text" placeholder="Fecha de Fin" readonly="true" style="cursor:pointer;">
+        <input id="dp1" name="start_date" type="text" placeholder="Fecha de Inicio" style="cursor:pointer;">
+        <input id="dp2" name="end_date" type="text" placeholder="Fecha de Fin" style="cursor:pointer;">
         <label class="checkbox">
             <input type="checkbox" name="paid" value="1"> Pagada?
         </label>
@@ -53,20 +53,16 @@
 <?php } ?>
 
 <script>
-    $(function() {
+    $(function(){
         $('#dp1').datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'dd-mm-yyyy'            
         });
-
     });
-
 </script>
 <script>
-    $(function() {
+    $(function(){
         $('#dp2').datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'dd-mm-yyyy'            
         });
-
     });
-
 </script>

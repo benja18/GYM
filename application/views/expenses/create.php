@@ -22,7 +22,7 @@
         <legend>Crear gasto</legend>
         <input name="name" type="text" placeholder="Nombre">
         <input name="value" type="text" placeholder="Precio">
-        <input id="dp1" name="date" type="text" placeholder="Fecha" readonly="true" style="cursor:pointer;">                       
+        <input id="dp1" name="date" type="text" placeholder="Fecha" style="cursor:pointer;">                       
         <br><br>
         <button type="submit" class="btn">Crear</button>        
         </form>
@@ -45,11 +45,9 @@
 <?php } ?>
 
 <script>
-    $(function() {
+    $(function(){
         $('#dp1').datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'dd-mm-yyyy'            
         });
-
     });
-
 </script>

@@ -22,7 +22,7 @@
         <input name="name" type="text" placeholder="Nombre">
         <input name="surname" type="text" placeholder="Apellido">
         <input name="ci" type="text" placeholder="Cedula">
-        <input id="dp1" name="birth" type="text" placeholder="Fecha de Nacimiento" readonly="true" style="cursor:pointer;">        
+        <input id="dp1" name="birth" type="text" placeholder="Fecha de Nacimiento" style="cursor:pointer;">        
         <input name="address" type="text" placeholder="Direccion">
         <input name="phone" type="text" placeholder="Telefono">
         <input name="mail" type="text" placeholder="Mail">
@@ -52,9 +52,7 @@
 <script>
     $(function(){
         $('#dp1').datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'dd-mm-yyyy'            
         });
-
     });
-
 </script>

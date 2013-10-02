@@ -31,7 +31,7 @@ class Expenses extends MY_Controller {
 
                 $data['name'] = $_POST['name'];
                 $data['value'] = $_POST['value'];                
-                $data['date'] = $_POST['date'];                
+                $data['date'] = date('Y-m-d', strtotime($_POST['date']));
 
                 if (ctype_digit($data['value'])) {
                     $this->load->model('expense');
@@ -82,7 +82,7 @@ class Expenses extends MY_Controller {
 
                 $data['name'] = $_POST['name'];
                 $data['value'] = $_POST['value'];                
-                $data['date'] = $_POST['date'];
+                $data['date'] = date('Y-m-d', strtotime($_POST['date']));
 
                 if (ctype_digit($data['value'])) {
 
@@ -123,10 +123,6 @@ class Expenses extends MY_Controller {
 
         $this->load->model('expense');
         $this->expense->delete($id);
-
-        //$expenses = $this->expense->getData();
-
-        //$data['expenses'] = $expenses;
         
         $this->load->view('templates/header', array('data' => $this->data));
         $this->load->helper('form');
@@ -152,8 +148,8 @@ class Expenses extends MY_Controller {
                 $this->load->view('templates/footer');
             } else {
 
-                $data['start_date'] = $_POST['start_date'];
-                $data['end_date'] = $_POST['end_date'];
+                $data['start_date'] = date('Y-m-d', strtotime($_POST['start_date']));
+                $data['end_date'] = date('Y-m-d', strtotime($_POST['end_date']));
                 
                 $this->load->model('expense');
                 $expenses = $this->expense->getData($data['start_date'],$data['end_date']);
@@ -194,8 +190,8 @@ class Expenses extends MY_Controller {
                 $this->load->view('templates/footer');
             } else {
 
-                $data['start_date'] = $_POST['start_date'];
-                $data['end_date'] = $_POST['end_date'];
+                $data['start_date'] = date('Y-m-d', strtotime($_POST['start_date']));
+                $data['end_date'] = date('Y-m-d', strtotime($_POST['end_date']));
                 
                 $this->load->model('expense');
                 $expensesLosses = $this->expense->lossesList($data['start_date'],$data['end_date']);

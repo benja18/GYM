@@ -34,7 +34,7 @@ class Clients extends MY_Controller {
                 $data['name'] = $_POST['name'];
                 $data['surname'] = $_POST['surname'];
                 $data['ci'] = $_POST['ci'];
-                $data['birth'] = $_POST['birth'];
+                $data['birth'] = date('Y-m-d', strtotime($_POST['birth']));
                 $data['address'] = $_POST['address'];
                 $data['phone'] = $_POST['phone'];
                 $data['mail'] = $_POST['mail'];
@@ -43,6 +43,8 @@ class Clients extends MY_Controller {
 
                 $this->load->model('client');
                 $this->client->insert($data);
+                
+                echo $data['birth'];
                 if ($this->db->_error_number() == 1062) {
                     $data['status'] = 'CiDuplicated';
                 } else {
@@ -110,7 +112,7 @@ class Clients extends MY_Controller {
                 $data['name'] = $_POST['name'];
                 $data['surname'] = $_POST['surname'];
                 $data['ci'] = $_POST['ci'];
-                $data['birth'] = $_POST['birth'];
+                $data['birth'] = date('Y-m-d', strtotime($_POST['birth']));
                 $data['address'] = $_POST['address'];
                 $data['phone'] = $_POST['phone'];
                 $data['mail'] = $_POST['mail'];

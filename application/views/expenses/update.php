@@ -22,7 +22,7 @@
         <input name="expense_id" type="hidden" placeholder="Expense Id" value="<?php if ($data['status'] == '') {echo $_GET['expense_id']; } else{ echo $data['expense_id']; }?>">
         <input name="name" type="text" placeholder="Nombre" value="<?php if ($data['status'] != 'ExpenseUpdated') {echo $data['expense']['name']; }?>">
         <input name="value" type="text" placeholder="Precio" value="<?php if ($data['status'] != 'ExpenseUpdated') {echo $data['expense']['value']; }?>">
-        <input id="dp1" name="date" type="text" placeholder="Fecha" readonly="true" style="cursor:pointer;" value="<?php if ($data['status'] != 'ExpenseUpdated') {echo $data['expense']['date']; }?>">                       
+        <input id="dp1" name="date" type="text" placeholder="Fecha" style="cursor:pointer;" value="<?php if ($data['status'] != 'ExpenseUpdated') {echo date('d-m-Y',  strtotime($data['expense']['date'])); }?>">                       
         <br><br>
         <button type="submit" class="btn">Actualizar</button>        
         </form>
@@ -45,11 +45,9 @@
 <?php } ?>
 
 <script>
-    $(function() {
+    $(function(){
         $('#dp1').datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'dd-mm-yyyy'            
         });
-
     });
-
 </script>

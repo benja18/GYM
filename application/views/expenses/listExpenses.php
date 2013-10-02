@@ -123,8 +123,8 @@
             echo form_open('expenses/listExpenses', $attributes);
         ?>
         <h5>Buscar por fecha</h5>                
-        <input id="dp1" class="input-small" name="start_date" type="text" placeholder="Inicio" readonly="true" style="cursor:pointer;">
-        <input id="dp2" class="input-small" name="end_date" type="text" placeholder="Fin" readonly="true" style="cursor:pointer;">
+        <input id="dp1" class="input-small" name="start_date" type="text" placeholder="Inicio" style="cursor:pointer;">
+        <input id="dp2" class="input-small" name="end_date" type="text" placeholder="Fin" style="cursor:pointer;">
         <button type="submit" class="btn right">Buscar</button>        
         <br><br>
 
@@ -172,17 +172,14 @@
 <script>
     $(function(){
         $('#dp1').datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'dd-mm-yyyy'            
         });
-
     });
-
 </script>
 <script>
     $(function(){
         $('#dp2').datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'dd-mm-yyyy'            
         });
-
     });
 </script>

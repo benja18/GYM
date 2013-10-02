@@ -23,7 +23,7 @@
         <input name="name" type="text" placeholder="Nombre" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['name']; }?>">
         <input name="surname" type="text" placeholder="Apellido" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['surname']; }?>">
         <input name="ci" type="text" placeholder="Cedula" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['ci']; }?>">
-        <input id="dp1" name="birth" type="text" placeholder="Fecha de Nacimiento" readonly="true" style="cursor:pointer;" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['birth']; }?>">        
+        <input id="dp1" name="birth" type="text" placeholder="Fecha de Nacimiento" style="cursor:pointer;" value="<?php if ($data['status'] != 'ClientUpdated') {echo date('d-m-Y',  strtotime($data['birth'])); }?>">        
         <input name="address" type="text" placeholder="Direccion" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['address']; }?>">
         <input name="phone" type="text" placeholder="Telefono" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['phone']; }?>">
         <input name="mail" type="text" placeholder="Mail" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['mail']; }?>">
@@ -64,9 +64,8 @@
 <script>
     $(function(){
         $('#dp1').datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'dd-mm-yyyy'
         });
 
     });
-
 </script>

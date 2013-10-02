@@ -20,8 +20,8 @@
         <?php echo form_open('subscriptions/update', $attributes); ?>
         <legend>Editar subscripcion</legend>      
         <input name="subscription_id" type="hidden" placeholder="Subscription Id" value="<?php if ($data['status'] == '') {echo $_GET['subscription_id']; } elseif($data['status'] != 'SubscriptionUpdated'){ echo $data['subscription']['subscription_id']; }?>">
-        <input id="dp1" name="start_date" type="text" placeholder="Fecha de Inicio" readonly="true" style="cursor:pointer;" value="<?php if ($data['status'] != 'SubscriptionUpdated') {echo $data['subscription']['start_date']; }?>">
-        <input id="dp2" name="end_date" type="text" placeholder="Fecha de Fin" readonly="true" style="cursor:pointer;" value="<?php if ($data['status'] != 'SubscriptionUpdated') {echo $data['subscription']['end_date']; }?>">
+        <input id="dp1" name="start_date" type="text" placeholder="Fecha de Inicio" style="cursor:pointer;" value="<?php if ($data['status'] != 'SubscriptionUpdated') {echo date('d-m-Y',  strtotime($data['subscription']['start_date'])); }?>">
+        <input id="dp2" name="end_date" type="text" placeholder="Fecha de Fin" style="cursor:pointer;" value="<?php if ($data['status'] != 'SubscriptionUpdated') {echo date('d-m-Y',  strtotime($data['subscription']['end_date'])); }?>">
         <label class="checkbox">
             <input type="checkbox" name="paid" value="1" <?php if ($data['status'] != 'SubscriptionUpdated' && $data['subscription']['paid'] == 1) {echo 'checked'; }?>> Pagada?
         </label>
@@ -54,20 +54,16 @@
 <?php } ?>  
 
 <script>
-    $(function() {
+    $(function(){
         $('#dp1').datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'dd-mm-yyyy'            
         });
-
     });
-
 </script>
 <script>
-    $(function() {
+    $(function(){
         $('#dp2').datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'dd-mm-yyyy'            
         });
-
     });
-
 </script>
