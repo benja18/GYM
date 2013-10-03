@@ -19,11 +19,7 @@
         ?>
         <?php echo form_open('subscriptions/create', $attributes); ?>
         <legend>Crear subscripcion</legend>                
-        <input id="dp1" name="start_date" type="text" placeholder="Fecha de Inicio" style="cursor:pointer;">
-        <input id="dp2" name="end_date" type="text" placeholder="Fecha de Fin" style="cursor:pointer;">
-        <label class="checkbox">
-            <input type="checkbox" name="paid" value="1"> Pagada?
-        </label>
+        <input id="dp1" name="start_date" type="text" placeholder="Fecha de Inicio" style="cursor:pointer;" value="<?php echo date('d-m-Y'); ?>">        
         <input name="price" type="text" placeholder="Precio">
         <input name="clients_client_id" type="hidden" value="<?php if ($data['status'] == '') {echo $_GET['client_id']; } else{ echo $data['clients_client_id']; }?>">        
         <select name="subscription_types_subscription_type_id">
@@ -31,7 +27,10 @@
                 <option value="<?php echo $subscriptionType->subscription_type_id ?>"><?php echo $subscriptionType->description ?></option>
             <?php } ?>
         </select>
-        <br><br>
+        <label class="checkbox">            
+            <input type="checkbox" name="paid" value="1"> <b>Pagada?</b>
+        </label>
+        <br>
         <button type="submit" class="btn">Crear</button>        
         </form>
     </div>

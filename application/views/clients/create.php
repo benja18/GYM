@@ -40,10 +40,11 @@
         <h3>Mensaje</h3>
     </div>
     <div class="modal-body">
-        <h4>Socio creado</h4>
+        <h4>Socio creado. Desea crearle una subscripcion?</h4>
     </div>
     <div class="modal-footer">
-        <a href="<?php echo base_url('clients/listClients') ?>" class="btn btn-primary">Aceptar</a>        
+        <a href="<?php echo base_url('subscriptions/create?client_id=').$data['client_id'] ?>" class="btn btn-primary">Si</a>
+        <a href="<?php echo base_url('clients/listClients')?>" class="btn btn-primary">No</a>
     </div>
 </div>
 <div class="modal-backdrop fade in"></div>

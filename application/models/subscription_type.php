@@ -35,4 +35,11 @@ class Subscription_type extends CI_Model {
         $subscriptionType = $query->result_array();
         return $subscriptionType[0];
     }
+    
+    function getDayAmount($id) {        
+        $sql = 'SELECT days FROM subscription_types where subscription_type_id='.$id;
+        $query = $this->db->query($sql);
+        $days = $query->result_array();
+        return $days[0]['days'];
+    }
 }

@@ -1,20 +1,20 @@
 <script type="text/javascript">// <![CDATA[
     $(document).ready(function(){       
-        $('#muscles').click(function(){ //any select change on the dropdown with id country trigger this code         
+        $('#muscles').click(function(){ //any select change on the dropdown with id muscle trigger this code         
             $("#exercises > option").remove(); //first of all clear select items
-            var muscle_id = $('#muscles').val();  // here we are taking country id of the selected one.
+            var muscle_id = $('#muscles').val();  // here we are taking muscle id of the selected one.
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url('routines/getExercises') ?>/"+muscle_id, //here we are calling our user controller and get_cities method with the country_id
+                url: "<?php echo base_url('routines/getExercises') ?>/"+muscle_id, //here we are calling our user controller and get_exercises method with the muscle_id
                  
-                success: function(exercises) //we're calling the response json array 'cities'
+                success: function(exercises) //we're calling the response json array 'exercises'
                 {
-                    $.each(exercises,function(exercise_id,name) //here we're doing a foeach loop round each city with id as the key and city as the value
+                    $.each(exercises,function(exercise_id,name) //here we're doing a foeach loop round each exercise with id as the key and exercise as the value
                     {
-                        var opt = $('<option />'); // here we're creating a new select option with for each city
+                        var opt = $('<option />'); // here we're creating a new select option with for each exercise
                         opt.val(exercise_id);
                         opt.text(name);
-                        $('#exercises').append(opt); //here we will append these new select options to a dropdown with the id 'cities'
+                        $('#exercises').append(opt); //here we will append these new select options to a dropdown with the id 'exercises'
                     });
                 }
                  

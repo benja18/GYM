@@ -37,10 +37,12 @@ class Clients extends MY_Controller {
 
                 $this->load->model('client');
                 $this->client->insert($data);
-                                
+                
                 if ($this->db->_error_number() == 1062) {
                     $data['status'] = 'CiDuplicated';
+                    $data['client_id'] = '';
                 } else {
+                    $data['client_id'] = $this->db->insert_id();
                     $data['status'] = 'ClientInserted';
                 }
 

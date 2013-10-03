@@ -14,8 +14,7 @@ class Subscriptions extends MY_Controller {
 
             $this->load->helper('form', 'subscriptions/create');
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('start_date', 'Start_date', 'required');
-            $this->form_validation->set_rules('end_date', 'End_date', 'required');
+            $this->form_validation->set_rules('start_date', 'Start_date', 'required');            
             $this->form_validation->set_rules('price', 'Price', 'required');
             $data['clients_client_id'] = $_POST['clients_client_id'];
             $this->load->model('subscription_type');
@@ -31,9 +30,11 @@ class Subscriptions extends MY_Controller {
                 $this->load->view('subscriptions/create', array('data' => $data));
                 $this->load->view('templates/footer');
             } else {
-
+                
+                $this->load->model('subscription_type');
+                $dayAmount = $this->subscription_type->getDayAmount($_POST['subscription_types_subscription_type_id']);                
                 $data['start_date'] = date('Y-m-d', strtotime($_POST['start_date']));
-                $data['end_date'] = date('Y-m-d', strtotime($_POST['end_date']));
+                $data['end_date'] = date('Y-m-d', strtotime($_POST['start_date'].' + '.$dayAmount.' days'));
                 $data['paid'] = isset($_POST['paid']) && $_POST['paid'] ? 1 : 0;
                 $data['price'] = $_POST['price'];
                 $data['clients_client_id'] = $_POST['clients_client_id'];
