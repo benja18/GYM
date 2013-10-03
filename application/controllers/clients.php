@@ -14,8 +14,7 @@ class Clients extends MY_Controller {
             $this->load->library('form_validation');
             $this->form_validation->set_rules('name', 'Name', 'required');
             $this->form_validation->set_rules('surname', 'Surname', 'required');
-            $this->form_validation->set_rules('ci', 'Ci', 'required');
-            $this->form_validation->set_rules('birth', 'Birth', 'required');
+            $this->form_validation->set_rules('ci', 'Ci', 'required');            
 
             if ($this->form_validation->run() === FALSE) {
                 $data['status'] = 'ValidationError';
@@ -28,7 +27,7 @@ class Clients extends MY_Controller {
                 $data['name'] = $_POST['name'];
                 $data['surname'] = $_POST['surname'];
                 $data['ci'] = $_POST['ci'];
-                $data['birth'] = date('Y-m-d', strtotime($_POST['birth']));
+                $data['birth'] = empty($_POST['birth']) ? NULL : date('Y-m-d', strtotime($_POST['birth']));
                 $data['address'] = $_POST['address'];
                 $data['phone'] = $_POST['phone'];
                 $data['mail'] = $_POST['mail'];
@@ -45,11 +44,11 @@ class Clients extends MY_Controller {
                     $data['client_id'] = $this->db->insert_id();
                     $data['status'] = 'ClientInserted';
                 }
-
+                
                 $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');
                 $this->load->view('clients/create', array('data' => $data));
-                $this->load->view('templates/footer');                
+                $this->load->view('templates/footer');
             }
         } else {
             $data['status'] = '';
@@ -82,8 +81,7 @@ class Clients extends MY_Controller {
             $this->load->library('form_validation');
             $this->form_validation->set_rules('name', 'Name', 'required');
             $this->form_validation->set_rules('surname', 'Surname', 'required');
-            $this->form_validation->set_rules('ci', 'Ci', 'required');
-            $this->form_validation->set_rules('birth', 'Birth', 'required');
+            $this->form_validation->set_rules('ci', 'Ci', 'required');            
 
             if ($this->form_validation->run() === FALSE) {
 
@@ -102,7 +100,7 @@ class Clients extends MY_Controller {
                 $data['name'] = $_POST['name'];
                 $data['surname'] = $_POST['surname'];
                 $data['ci'] = $_POST['ci'];
-                $data['birth'] = date('Y-m-d', strtotime($_POST['birth']));
+                $data['birth'] = empty($_POST['birth']) ? NULL : date('Y-m-d', strtotime($_POST['birth']));
                 $data['address'] = $_POST['address'];
                 $data['phone'] = $_POST['phone'];
                 $data['mail'] = $_POST['mail'];

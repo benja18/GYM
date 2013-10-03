@@ -149,7 +149,7 @@
                         <td><strong><?php echo $client->name ?></strong></td>
                         <td><strong><?php echo $client->surname ?></strong></td>
                         <td><strong><?php echo $client->ci ?></strong></td>
-                        <td><strong><?php echo date('d-m-Y',  strtotime($client->birth)); ?></strong></td>
+                        <td><strong><?php if(!empty($client->birth)){echo date('d-m-Y',  strtotime($client->birth));} ?></strong></td>
                         <td><strong><?php echo $client->address ?></strong></td>
                         <td><strong><?php echo $client->phone ?></strong></td>
                         <td><strong><?php echo $client->mail ?></strong></td>
