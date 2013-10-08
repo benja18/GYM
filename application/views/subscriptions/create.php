@@ -19,8 +19,7 @@
         ?>
         <?php echo form_open('subscriptions/create', $attributes); ?>
         <legend>Crear subscripcion</legend>                
-        <input id="dp1" name="start_date" type="text" placeholder="Fecha de Inicio" style="cursor:pointer;" value="<?php echo date('d-m-Y'); ?>">        
-        <input name="price" type="text" placeholder="Precio">
+        <input id="dp1" name="start_date" type="text" placeholder="Fecha de Inicio" style="cursor:pointer;" value="<?php echo date('d-m-Y'); ?>">                
         <input name="clients_client_id" type="hidden" value="<?php if ($data['status'] == '') {echo $_GET['client_id']; } else{ echo $data['clients_client_id']; }?>">        
         <select name="subscription_types_subscription_type_id">
             <?php foreach ($data['subscription_types'] as $subscriptionType) { ?>

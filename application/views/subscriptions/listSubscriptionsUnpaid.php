@@ -121,7 +121,8 @@
     <br><br>    
     <table class="table table-bordered" id="example">
         <thead>
-            <tr>       
+            <tr>      
+                <th>Nro Socio</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Cedula</th>
@@ -137,7 +138,8 @@
             <?php if (isset($data['subscriptions'])) {
                 foreach ($data['subscriptions'] as $subscription) {
                     ?>
-                    <tr>                        
+                    <tr>      
+                        <td><strong><?php echo $subscription->client_id ?></strong></td>
                         <td><strong><?php echo $subscription->name ?></strong></td>
                         <td><strong><?php echo $subscription->surname ?></strong></td>
                         <td><strong><?php echo $subscription->ci ?></strong></td>

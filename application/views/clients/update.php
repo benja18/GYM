@@ -19,7 +19,7 @@
         ?>
         <?php echo form_open('clients/update', $attributes); ?>
         <legend>Editar Socio</legend>
-        <input name="client_id" type="hidden" placeholder="Client Id" value="<?php if ($data['status'] == '') {echo $_GET['client_id']; } elseif($data['status'] != 'ClientUpdated'){ echo $data['client_id']; }?>">        
+        <input name="client_id" type="text" readonly="true" value="<?php if ($data['status'] == '') {echo $_GET['client_id']; } elseif($data['status'] != 'ClientUpdated'){ echo $data['client_id']; }?>">        
         <input name="name" type="text" placeholder="Nombre" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['name']; }?>">
         <input name="surname" type="text" placeholder="Apellido" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['surname']; }?>">
         <input name="ci" type="text" placeholder="Cedula" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['ci']; }?>">

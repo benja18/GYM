@@ -161,6 +161,8 @@ CREATE TABLE IF NOT EXISTS `subscriptions` (
 CREATE TABLE IF NOT EXISTS `subscription_types` (
   `subscription_type_id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(45) NOT NULL,
+  `days` INT NOT NULL,
+  `price` INT NOT NULL,
   PRIMARY KEY (`subscription_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 

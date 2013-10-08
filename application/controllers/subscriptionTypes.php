@@ -14,6 +14,7 @@ class SubscriptionTypes extends MY_Controller {
             $this->load->library('form_validation');
             $this->form_validation->set_rules('description', 'Description', 'required');
             $this->form_validation->set_rules('days', 'Days', 'required');
+            $this->form_validation->set_rules('price', 'Price', 'required');
 
             if ($this->form_validation->run() === FALSE) {
                 $data['status'] = 'ValidationError';
@@ -24,13 +25,19 @@ class SubscriptionTypes extends MY_Controller {
             } else {
                 $data['description'] = $_POST['description'];
                 $data['days'] = $_POST['days'];
+                $data['price'] = $_POST['price'];
                 
-                if (ctype_digit($data['days'])) {
+                if (ctype_digit($data['days']) && ctype_digit($data['price'])) {
                     $this->load->model('subscription_type');
                     $this->subscription_type->insert($data);
                     $data['status'] = 'SubscriptionTypeInserted';                
                 } else {
-                    $data['status'] = 'InvalidDays';
+                    if (!ctype_digit($data['days'])){
+                        $data['status'] = 'InvalidDays';
+                    } else{
+                        $data['status'] = 'InvalidPrice';
+                    }
+                    
                 }             
                     
                 $this->load->view('templates/header', array('data' => $this->data));
@@ -68,6 +75,7 @@ class SubscriptionTypes extends MY_Controller {
             $this->load->library('form_validation');
             $this->form_validation->set_rules('description', 'Description', 'required');
             $this->form_validation->set_rules('days', 'Days', 'required');
+            $this->form_validation->set_rules('price', 'Price', 'required');
 
             if ($this->form_validation->run() === FALSE) {
 
@@ -85,14 +93,19 @@ class SubscriptionTypes extends MY_Controller {
 
                 $data['description'] = $_POST['description'];
                 $data['days'] = $_POST['days'];
+                $data['price'] = $_POST['price'];
                 $data['subscription_type_id'] = $_POST['subscription_type_id'];
 
-                if (ctype_digit($data['days'])) {
+                if (ctype_digit($data['days']) && ctype_digit($data['price'])) {
                     $this->load->model('subscription_type');
                     $this->subscription_type->update($_POST['subscription_type_id'], $data);
                     $data['status'] = 'SubscriptionTypeUpdated';
                 } else {
-                    $data['status'] = 'InvalidDays';
+                    if (!ctype_digit($data['days'])){
+                        $data['status'] = 'InvalidDays';
+                    } else{
+                        $data['status'] = 'InvalidPrice';
+                    }                    
                 }
 
                 $this->load->view('templates/header', array('data' => $this->data));

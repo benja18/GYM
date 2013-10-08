@@ -177,6 +177,7 @@
             <table class="table table-bordered" id="example2">
                 <thead>
                     <tr>       
+                        <th>Nro Socio</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Cedula</th>
@@ -193,6 +194,7 @@
                         foreach ($data['subscriptionWinnings'] as $subscription) {
                             ?>
                             <tr>                        
+                                <td><strong><?php echo $subscription->client_id ?></strong></td>
                                 <td><strong><?php echo $subscription->name ?></strong></td>
                                 <td><strong><?php echo $subscription->surname ?></strong></td>
                                 <td><strong><?php echo $subscription->ci ?></strong></td>

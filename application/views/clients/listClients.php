@@ -127,7 +127,8 @@
     <br><br>
     <table class="table table-bordered" id="example">
         <thead>
-            <tr>               
+            <tr>
+                <th>Nro Socio</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Cedula</th>
@@ -145,7 +146,8 @@
             if (isset($data['clients'])) {
                 foreach ($data['clients'] as $client) {
                     ?>
-                    <tr>                        
+                    <tr>
+                        <td><strong><?php echo $client->client_id ?></strong></td>
                         <td><strong><?php echo $client->name ?></strong></td>
                         <td><strong><?php echo $client->surname ?></strong></td>
                         <td><strong><?php echo $client->ci ?></strong></td>

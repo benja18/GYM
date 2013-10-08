@@ -14,8 +14,7 @@ class Subscriptions extends MY_Controller {
 
             $this->load->helper('form', 'subscriptions/create');
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('start_date', 'Start_date', 'required');            
-            $this->form_validation->set_rules('price', 'Price', 'required');
+            $this->form_validation->set_rules('start_date', 'Start_date', 'required');                        
             $data['clients_client_id'] = $_POST['clients_client_id'];
             $this->load->model('subscription_type');
             $subscriptionTypes = $this->subscription_type->getData();
@@ -32,22 +31,18 @@ class Subscriptions extends MY_Controller {
             } else {
                 
                 $this->load->model('subscription_type');
-                $dayAmount = $this->subscription_type->getDayAmount($_POST['subscription_types_subscription_type_id']);                
+                $dayAmount = $this->subscription_type->getDayAmount($_POST['subscription_types_subscription_type_id']);
                 $data['start_date'] = date('Y-m-d', strtotime($_POST['start_date']));
                 $data['end_date'] = date('Y-m-d', strtotime($_POST['start_date'].' + '.$dayAmount.' days'));
                 $data['paid'] = isset($_POST['paid']) && $_POST['paid'] ? 1 : 0;
-                $data['price'] = $_POST['price'];
+                $data['price'] = $this->subscription_type->getPrice($_POST['subscription_types_subscription_type_id']);
                 $data['clients_client_id'] = $_POST['clients_client_id'];
                 $data['subscription_types_subscription_type_id'] = $_POST['subscription_types_subscription_type_id'];
 
-                if (ctype_digit($data['price'])) {
-                    $this->load->model('subscription');
-                    $this->subscription->insert($data);
+                $this->load->model('subscription');
+                $this->subscription->insert($data);
 
-                    $data['status'] = 'SubscriptionInserted';
-                } else {
-                    $data['status'] = 'PriceError';
-                }
+                $data['status'] = 'SubscriptionInserted';
 
                 $this->load->view('templates/header', array('data' => $this->data));
                 $this->load->helper('form');

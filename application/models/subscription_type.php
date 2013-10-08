@@ -14,7 +14,8 @@ class Subscription_type extends CI_Model {
 
     function insert($data) {
         $this->db->set('description', $data['description']);        
-        $this->db->set('days', $data['days']); 
+        $this->db->set('days', $data['days']);
+        $this->db->set('price', $data['price']);
         $this->db->insert('subscription_types');
     }
     
@@ -41,5 +42,12 @@ class Subscription_type extends CI_Model {
         $query = $this->db->query($sql);
         $days = $query->result_array();
         return $days[0]['days'];
+    }
+    
+    function getPrice($id) {        
+        $sql = 'SELECT price FROM subscription_types where subscription_type_id='.$id;
+        $query = $this->db->query($sql);
+        $price = $query->result_array();
+        return $price[0]['price'];
     }
 }

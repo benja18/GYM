@@ -14,6 +14,13 @@
                 <p>La cantidad de dias debe ser un numero.</p>
             </div>
         <?php } ?>
+        <?php if ($data['status'] == 'InvalidPrice') { ?>
+            <div class="alert alert-block alert-error fade in">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <h4 class="alert-heading">Error!</h4>
+                <p>El precio debe ser un numero.</p>
+            </div>
+        <?php } ?>
         <?php
         //echo validation_errors();
         $attributes = array('role' => 'form', 'class' => 'span3', 'id' => 'myform', 'name' => 'create');
@@ -22,6 +29,7 @@
         <legend>Crear Tipo de Susbcripcion</legend>        
         <input name="description" type="text" placeholder="Descripcion">
         <input name="days" type="text" placeholder="Cantidad de dias">
+        <input name="price" type="text" placeholder="Precio">
         <br><br>
         <button type="submit" class="btn">Crear</button>        
         </form>
