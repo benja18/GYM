@@ -10,6 +10,9 @@ class MY_Controller extends CI_Controller {
     
     $this->load->model('subscription');
     $this->data['unpaidSubscriptionsCounter'] = $this->subscription->getSubscriptionsUnpaidCount();
-    $this->data['nextExpirationsCounter'] = $this->subscription->getNextExpirationsCount($this->data['daysCount']);    
+    $this->data['nextExpirationsCounter'] = $this->subscription->getNextExpirationsCount($this->data['daysCount']);
+    
+    $this->load->model('client');
+    $this->data['clientsBirths'] = $this->client->getBirthsCount();
   }
 }

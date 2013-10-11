@@ -157,5 +157,18 @@ class Clients extends MY_Controller {
         $this->load->view('clients/listClients', array('data' => $data));
         $this->load->view('templates/footer');
     }
+    
+    public function listBirths() {
+        
+        $data['status'] = "";
+        $this->load->model('client');
 
+        $clients = $this->client->getBirthsList();
+
+        $data['clients'] = $clients;
+
+        $this->load->view('templates/header', array('data' => $this->data));
+        $this->load->view('clients/listBirths', array('data' => $data));
+        $this->load->view('templates/footer');
+    }
 }

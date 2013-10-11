@@ -41,4 +41,17 @@ class Client extends CI_Model {
         $client = $query->result_array();
         return $client[0];
     }
+    
+    function getBirthsCount() {
+        $sql = 'SELECT COUNT(*) as count FROM clients WHERE birth = CURDATE()';
+        $query = $this->db->query($sql);
+        $count = $query->result_array();
+        return $count['0']['count'];
+    }
+    
+    function getBirthsList() {
+        $sql = 'SELECT client_id, name, surname, birth, phone, mail FROM clients WHERE birth = CURDATE()';
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
 }
