@@ -22,6 +22,7 @@ class Client extends CI_Model {
         $this->db->set('mail', $data['mail']);
         $this->db->set('emergency', $data['emergency']);
         $this->db->set('ocupation', $data['ocupation']);
+        $this->db->set('active', 1);
         $this->db->insert('clients');
     }
     
@@ -53,5 +54,27 @@ class Client extends CI_Model {
         $sql = 'SELECT client_id, name, surname, birth, phone, mail FROM clients WHERE birth = CURDATE()';
         $query = $this->db->query($sql);
         return $query->result();
+    }
+    
+    function getActiveClients() {
+        $sql = 'SELECT client_id, name, surname, ci, birth, address, phone, mail, emergency, ocupation FROM clients WHERE active = 1';
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+    
+    function getInactiveClients() {
+        $sql = 'SELECT client_id, name, surname, ci, birth, address, phone, mail, emergency, ocupation FROM clients WHERE active = 0';
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+    
+    function setClientInactive($id) {
+        $sql = 'UPDATE clients SET active = 0 WHERE client_id = '.$id;
+        $this->db->query($sql);        
+    }
+    
+    function setClientActive($id) {
+        $sql = 'UPDATE clients SET active = 1 WHERE client_id = '.$id;
+        $this->db->query($sql);        
     }
 }

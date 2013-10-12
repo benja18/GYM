@@ -29,6 +29,12 @@
         <input name="mail" type="text" placeholder="Mail" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['mail']; }?>">
         <input name="emergency" type="text" placeholder="Emergencia" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['emergency']; }?>">
         <input name="ocupation" type="text" placeholder="Ocupacion" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['ocupation']; }?>">
+        <select name="active">
+            <?php if($data['status'] != 'ClientUpdated'){?> 
+            <option value="1" <?php if ($data['active'] == 1){echo 'selected';}?>>Si</option>
+            <option value="0" <?php if ($data['active'] == 0){echo 'selected';}?>>No</option>
+           <?php } ?>
+        </select>
         <br><br>
         <button type="submit" class="btn">Actualizar</button>        
         </form>

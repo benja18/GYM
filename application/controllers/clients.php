@@ -106,6 +106,7 @@ class Clients extends MY_Controller {
                 $data['mail'] = $_POST['mail'];
                 $data['emergency'] = $_POST['emergency'];
                 $data['ocupation'] = $_POST['ocupation'];
+                $data['active'] = $_POST['active'];
 
 
                 $this->load->model('client');
@@ -169,6 +170,64 @@ class Clients extends MY_Controller {
 
         $this->load->view('templates/header', array('data' => $this->data));
         $this->load->view('clients/listBirths', array('data' => $data));
+        $this->load->view('templates/footer');
+    }
+    
+    public function listActiveClients() {
+        
+        $data['status'] = "";
+        $this->load->model('client');
+
+        $clients = $this->client->getActiveClients();
+
+        $data['clients'] = $clients;
+
+        $this->load->view('templates/header', array('data' => $this->data));
+        $this->load->view('clients/listActiveClients', array('data' => $data));
+        $this->load->view('templates/footer');
+    }
+    
+    public function listInactiveClients() {
+        
+        $data['status'] = "";
+        $this->load->model('client');
+
+        $clients = $this->client->getInactiveClients();
+
+        $data['clients'] = $clients;
+
+        $this->load->view('templates/header', array('data' => $this->data));
+        $this->load->view('clients/listInactiveClients', array('data' => $data));
+        $this->load->view('templates/footer');
+    }
+    
+    public function setClientInactive() {
+        
+        $data['status'] = "";
+        
+        $this->load->model('client');
+        $id = $_GET['client_id'];
+
+        $this->load->model('client');
+        $this->client->setClientInactive($id);
+                    
+        $this->load->view('templates/header', array('data' => $this->data));
+        $this->load->view('welcome_message', array('data' => $data));
+        $this->load->view('templates/footer');
+    }
+    
+     public function setClientActive() {
+        
+        $data['status'] = "";
+        
+        $this->load->model('client');
+        $id = $_GET['client_id'];
+
+        $this->load->model('client');
+        $this->client->setClientActive($id);
+                    
+        $this->load->view('templates/header', array('data' => $this->data));
+        $this->load->view('welcome_message', array('data' => $data));
         $this->load->view('templates/footer');
     }
 }

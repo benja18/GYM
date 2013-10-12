@@ -94,6 +94,11 @@ class Subscription extends CI_Model {
         $sql = 'SELECT s.* , st.description AS subscription_type, c.client_id as client_id, c.name AS name, c.surname AS surname, c.ci AS ci FROM subscriptions s, subscription_types st, clients c WHERE s.subscription_types_subscription_type_id = st.subscription_type_id AND s.clients_client_id = c.client_id AND s.start_date BETWEEN "' . $start . '" AND "' . $end . '" AND paid = 1';
         $query = $this->db->query($sql);
         return $query->result();
+    }    
+    
+    function expiredClients() {
+        $sql = 'SELECT s.clients_client_id, c.name, c.surname, MAX(s.end_date) as end_date FROM subscriptions s, clients c WHERE c.client_id = s.clients_client_id AND active = 1 GROUP BY s.clients_client_id';
+        $query = $this->db->query($sql);
+        return $query->result();
     }
-
 }

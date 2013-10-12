@@ -4,3 +4,5 @@
 
 ALTER TABLE  `subscription_types` ADD  `days` INT NOT NULL AFTER  `description`
 ALTER TABLE  `subscription_types` ADD  `price` INT NOT NULL ;
+ALTER TABLE  `clients` ADD  `active` TINYINT( 1 ) NOT NULL AFTER  `ocupation` ;
+UPDATE clients set active = 1;

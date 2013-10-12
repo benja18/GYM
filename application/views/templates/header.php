@@ -33,8 +33,9 @@ if (!$this->session->userdata('logged_in')) {
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-exclamation-sign"></i> Vencimientos<b class="caret"></b> <span class="badge badge-warning"><?php echo $data['nextExpirationsCounter']; ?></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url('subscriptions/listNextExpirations') ?>"><span class="badge badge-warning"><?php echo $data['nextExpirationsCounter']; ?></span> Proximos vencimientos</a></li>                            
-                            <li><a href="<?php echo base_url('subscriptions/listSubscriptionsUnpaid') ?>"><span class="badge badge-important"><?php echo $data['unpaidSubscriptionsCounter']; ?></span> Subscripciones sin pagar</a></li>
+                            <li><a href="<?php echo base_url('subscriptions/listNextExpirations') ?>"><span class="badge badge-warning"><?php echo $data['nextExpirationsCounter']; ?></span> Proximos vencimientos</a></li>
+                            <li><a href="<?php echo base_url('subscriptions/listExpired') ?>"><span class="badge badge-important"><?php echo $data['expiredClientsCount']; ?></span> Socios a renovar</a></li>
+                            <li><a href="<?php echo base_url('subscriptions/listSubscriptionsUnpaid') ?>"><span class="badge badge-inverse"><?php echo $data['unpaidSubscriptionsCounter']; ?></span> Subscripciones sin pagar</a></li>
                             <li><a href="<?php echo base_url('clients/listBirths') ?>"><span class="badge badge-info"><?php echo $data['clientsBirths']; ?></span> Cumpleaños</a></li>                            
                             <li><a href="<?php echo base_url('subscriptions/findSubscriptions') ?>"><i class="icon-search"></i> Buscar subscripciones</a></li>                            
                         </ul>
@@ -43,7 +44,9 @@ if (!$this->session->userdata('logged_in')) {
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> Socios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url('clients/create') ?>"><i class="icon-plus"></i> Agregar socio</a></li>                            
-                            <li><a href="<?php echo base_url('clients/listClients') ?>"><i class="icon-list"></i> Ver socios</a></li>                            
+                            <li><a href="<?php echo base_url('clients/listClients') ?>"><i class="icon-list"></i> Ver todos los socios</a></li>
+                            <li><a href="<?php echo base_url('clients/listActiveClients') ?>"><i class="icon-list"></i> Ver socios activos</a></li>
+                            <li><a href="<?php echo base_url('clients/listInactiveClients') ?>"><i class="icon-list"></i> Ver socios inactivos</a></li>
                             <li><a href="<?php echo base_url('subscriptionTypes/create') ?>"><i class="icon-plus"></i> Agregar tipo de subscripcion</a></li>
                             <li><a href="<?php echo base_url('subscriptionTypes/listSubscriptionTypes') ?>"><i class="icon-list"></i> Ver tipos de subscripciones</a></li>
                         </ul>

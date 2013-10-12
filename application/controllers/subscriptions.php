@@ -227,4 +227,14 @@ class Subscriptions extends MY_Controller {
             $this->load->view('templates/footer');
         }
     }
+    
+    public function listExpired() {
+        $this->load->model('subscription');
+        $clients = $this->subscription->expiredClients();
+        $data['clients'] = $clients;
+
+        $this->load->view('templates/header', array('data' => $this->data));
+        $this->load->view('subscriptions/listExpired', array('data' => $data));
+        $this->load->view('templates/footer');
+    }
 }
