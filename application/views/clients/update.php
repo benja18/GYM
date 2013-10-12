@@ -14,11 +14,34 @@
                 <p>Debes completar todos los campos.</p>
             </div>
         <?php } ?>
+        <?php if ($data['status'] == 'InvalidSize') { ?>
+            <div class="alert alert-block alert-error fade in">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <h4 class="alert-heading">Error!</h4>
+                <p>El tamaño de la foto debe ser menor a 9MB.</p>
+            </div>
+        <?php } ?>
+        <?php if ($data['status'] == 'InvalidFormat') { ?>
+            <div class="alert alert-block alert-error fade in">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <h4 class="alert-heading">Error!</h4>
+                <p>El foramto de la foto debe ser jpeg, jpg o png.</p>
+            </div>
+        <?php } ?>
+        <?php if ($data['status'] == 'FileError') { ?>
+            <div class="alert alert-block alert-error fade in">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <h4 class="alert-heading">Error!</h4>
+                <p>La foto seleccionada no es valida.</p>
+            </div>
+        <?php } ?>
         <?php        
-        $attributes = array('role' => 'form', 'class' => 'span3', 'id' => 'myform', 'name' => 'create');
+        $attributes = array('role' => 'form', 'class' => 'span3', 'id' => 'myform', 'name' => 'create', 'enctype' => 'multipart/form-data');
         ?>
         <?php echo form_open('clients/update', $attributes); ?>
         <legend>Editar Socio</legend>
+        <center ><img style="width: 150px;height: 192px;"src="<?php if ($data['status'] != 'ClientUpdated') {echo base_url('assets/photos').'/'.$data['photo']; }?>"></center>
+        <br><br>
         <input name="client_id" type="text" readonly="true" value="<?php if ($data['status'] == '') {echo $_GET['client_id']; } elseif($data['status'] != 'ClientUpdated'){ echo $data['client_id']; }?>">        
         <input name="name" type="text" placeholder="Nombre" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['name']; }?>">
         <input name="surname" type="text" placeholder="Apellido" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['surname']; }?>">
@@ -35,6 +58,8 @@
             <option value="0" <?php if ($data['active'] == 0){echo 'selected';}?>>No</option>
            <?php } ?>
         </select>
+        <label>Adjuntar foto</label>
+        <input name="photo" type="file">
         <br><br>
         <button type="submit" class="btn">Actualizar</button>        
         </form>

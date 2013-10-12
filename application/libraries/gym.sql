@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `mail` varchar(64) DEFAULT NULL,
   `emergency` varchar(45) DEFAULT NULL,
   `ocupation` varchar(45) DEFAULT NULL,
-  `active` TINYINT( 1 ) NOT NULL,
+  `active` TINYINT(1) NOT NULL,
+  `photo` VARCHAR(512) NOT NULL,
   PRIMARY KEY (`client_id`),
   UNIQUE KEY `ci_UNIQUE` (`ci`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;

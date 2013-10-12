@@ -23,6 +23,7 @@ class Client extends CI_Model {
         $this->db->set('emergency', $data['emergency']);
         $this->db->set('ocupation', $data['ocupation']);
         $this->db->set('active', 1);
+        $this->db->set('photo', $data['photo']);
         $this->db->insert('clients');
     }
     

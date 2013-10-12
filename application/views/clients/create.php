@@ -7,6 +7,20 @@
                 <p>Ya existe un cliente con esta cedula.</p>
             </div>
         <?php } ?>
+        <?php if ($data['status'] == 'InvalidFormat') { ?>
+            <div class="alert alert-block alert-error fade in">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <h4 class="alert-heading">Error!</h4>
+                <p>El foramto de la foto debe ser jpeg, jpg o png.</p>
+            </div>
+        <?php } ?>
+        <?php if ($data['status'] == 'FileError') { ?>
+            <div class="alert alert-block alert-error fade in">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <h4 class="alert-heading">Error!</h4>
+                <p>La foto seleccionada no es valida.</p>
+            </div>
+        <?php } ?>
         <?php if ($data['status'] == 'ValidationError') { ?>
             <div class="alert alert-block alert-error fade in">
                 <button type="button" class="close" data-dismiss="alert">×</button>
@@ -15,7 +29,7 @@
             </div>
         <?php } ?>
         <?php        
-        $attributes = array('role' => 'form', 'class' => 'span3', 'id' => 'myform', 'name' => 'create');
+        $attributes = array('role' => 'form', 'class' => 'span3', 'id' => 'myform', 'name' => 'create', 'enctype' => 'multipart/form-data');
         ?>
         <?php echo form_open('clients/create', $attributes); ?>
         <legend>Crear Socio</legend>        
@@ -28,6 +42,8 @@
         <input name="mail" type="text" placeholder="Mail">
         <input name="emergency" type="text" placeholder="Emergencia">
         <input name="ocupation" type="text" placeholder="Ocupacion">
+        <label>Adjuntar foto</label>
+        <input name="photo" type="file">
         <br><br>
         <button type="submit" class="btn">Crear</button>        
         </form>
