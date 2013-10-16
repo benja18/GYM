@@ -7,7 +7,6 @@ class Configuration extends CI_Model {
 
     function getData() {
         $configurations = $this->db->get('configurations');
-
         return $configurations->result();
     }
     

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2013 at 03:30 AM
+-- Generation Time: Oct 16, 2013 at 02:53 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -38,12 +38,13 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `phone` varchar(32) DEFAULT NULL,
   `mail` varchar(64) DEFAULT NULL,
   `emergency` varchar(45) DEFAULT NULL,
+  `disease` varchar(45) NOT NULL,
   `ocupation` varchar(45) DEFAULT NULL,
-  `active` TINYINT(1) NOT NULL,
-  `photo` VARCHAR(512) NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `photo` varchar(512) NOT NULL,
   PRIMARY KEY (`client_id`),
   UNIQUE KEY `ci_UNIQUE` (`ci`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 -- --------------------------------------------------------
 
@@ -59,12 +60,20 @@ CREATE TABLE IF NOT EXISTS `configurations` (
   UNIQUE KEY `key_UNIQUE` (`configuration_key`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `configurations`
+-- Table structure for table `debts`
 --
 
-INSERT INTO `configurations` (`configuration_id`, `configuration_key`, `configuration_value`) VALUES
-(1, 'EXPIRATION_INTERVAL_DAYS', '5');
+CREATE TABLE IF NOT EXISTS `debts` (
+  `debt_id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(256) NOT NULL,
+  `value` int(11) NOT NULL,
+  `clients_client_id` int(11) NOT NULL,
+  PRIMARY KEY (`debt_id`),
+  KEY `fk_debts_clients1_idx` (`clients_client_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -152,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `subscriptions` (
   PRIMARY KEY (`subscription_id`,`clients_client_id`),
   KEY `fk_subscription_clients1_idx` (`clients_client_id`),
   KEY `fk_subscriptions_subscription_types1_idx` (`subscription_types_subscription_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -163,10 +172,10 @@ CREATE TABLE IF NOT EXISTS `subscriptions` (
 CREATE TABLE IF NOT EXISTS `subscription_types` (
   `subscription_type_id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(45) NOT NULL,
-  `days` INT NOT NULL,
-  `price` INT NOT NULL,
+  `days` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
   PRIMARY KEY (`subscription_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -183,15 +192,14 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`user_id`, `username`, `password`) VALUES
-(1, 'admin', 'e2a7106f1cc8bb1e1318df70aa0a3540');
-
---
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `debts`
+--
+ALTER TABLE `debts`
+  ADD CONSTRAINT `fk_debts_clients1` FOREIGN KEY (`clients_client_id`) REFERENCES `clients` (`client_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `exercises`
@@ -216,9 +224,12 @@ ALTER TABLE `routines`
 -- Constraints for table `subscriptions`
 --
 ALTER TABLE `subscriptions`
-  ADD CONSTRAINT `fk_subscription_clients1` FOREIGN KEY (`clients_client_id`) REFERENCES `clients` (`client_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_subscriptions_subscription_types1` FOREIGN KEY (`subscription_types_subscription_type_id`) REFERENCES `subscription_types` (`subscription_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_subscriptions_subscription_types1` FOREIGN KEY (`subscription_types_subscription_type_id`) REFERENCES `subscription_types` (`subscription_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_subscription_clients1` FOREIGN KEY (`clients_client_id`) REFERENCES `clients` (`client_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+INSERT INTO `users` (`user_id`, `username`, `password`) VALUES
+(1, 'admin', 'e2a7106f1cc8bb1e1318df70aa0a3540');

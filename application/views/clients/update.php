@@ -51,6 +51,7 @@
         <input name="phone" type="text" placeholder="Telefono" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['phone']; }?>">
         <input name="mail" type="text" placeholder="Mail" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['mail']; }?>">
         <input name="emergency" type="text" placeholder="Emergencia" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['emergency']; }?>">
+        <input name="disease" type="text" placeholder="Enfermedad" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['disease']; }?>">
         <input name="ocupation" type="text" placeholder="Ocupacion" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['ocupation']; }?>">
         <select name="active">
             <?php if($data['status'] != 'ClientUpdated'){?> 
@@ -73,6 +74,10 @@
         <a href="<?php echo base_url('routines/create?client_id=').$data['client_id'] ?>" class="btn btn-danger span6">Crear Rutina</a>
         <br><br><br>
         <a href="<?php echo base_url('routines/listClientRoutines?client_id=').$data['client_id'] ?>" class="btn btn-warning span6">Ver Rutinas</a>
+        <br><br><br>
+        <a href="<?php echo base_url('debts/create?client_id=').$data['client_id'] ?>" class="btn btn-inverse span6">Crear Deuda</a>
+        <br><br><br>
+        <a href="<?php echo base_url('debts/listClientDebts?client_id=').$data['client_id'] ?>" class="btn btn-inverse span6">Ver Deudas</a>
         </div>
         <?php } ?>
     </div>

@@ -65,7 +65,8 @@ if (!$this->session->userdata('logged_in')) {
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url('expenses/create') ?>"><i class="icon-plus"></i> Agregar gasto</a></li>                            
                             <li><a href="<?php echo base_url('expenses/listExpenses') ?>"><i class="icon-list"></i> Ver gastos</a></li>                            
-                            <li><a href="<?php echo base_url('expenses/earnings') ?>"><i class="icon-book"></i> Calcular cuentas</a></li>                            
+                            <li><a href="<?php echo base_url('expenses/earnings') ?>"><i class="icon-book"></i> Calcular cuentas</a></li>
+                            <li><a href="<?php echo base_url('debts/listDebts') ?>"><i class="icon-warning-sign"></i> Ver deudas</a></li>
                         </ul>
                     </li>
                 </ul>

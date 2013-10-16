@@ -41,6 +41,7 @@
         <input name="phone" type="text" placeholder="Telefono">
         <input name="mail" type="text" placeholder="Mail">
         <input name="emergency" type="text" placeholder="Emergencia">
+        <input name="disease" type="text" placeholder="Enfermedad">
         <input name="ocupation" type="text" placeholder="Ocupacion">
         <label>Adjuntar foto</label>
         <input name="photo" type="file">

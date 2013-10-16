@@ -109,59 +109,40 @@
     });
 </script>
 <script type="text/javascript">
-    function sendId(client_id) {
-        document.getElementById('modal-footer').innerHTML = "<a href=\"<?php echo base_url('clients/setClientInactive?client_id=') ?>" + client_id + "\" class=\"btn btn-primary\">Si</a><a class=\"btn\" data-dismiss=\"modal\">No</a>"
+    function sendId(debt_id) {
+        document.getElementById('modal-footer').innerHTML = "<a href=\"<?php echo base_url('debts/delete?debt_id=') ?>" + debt_id + "\" class=\"btn btn-primary\">Si</a><a class=\"btn\" data-dismiss=\"modal\">No</a>"
 
         $('#modal-delete').modal("show");
     }
 </script>
-<div class="row  span14 offset1">
-    <?php if ($data['status'] == 'CantDelete') { ?>
-        <div class="alert alert-block alert-error fade in">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <h4 class="alert-heading">Error!</h4>
-            <p>No se puede eliminar el socio ya que tiene rutinas o subscipciones asociadas.</p>
-        </div>
-    <?php } ?>
-    <legend>Clientes</legend>
+<div class="row span12 offset2">
+    <legend>Deudas</legend>
     <br><br>
     <table class="table table-bordered" id="example">
         <thead>
-            <tr>
-                <th>Nro Socio</th>
+            <tr>               
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Cedula</th>
-                <th>Fecha de nacimiento</th>
-                <th>Direccion</th>
-                <th>Telefono</th>
-                <th>Mail</th>
-                <th>Emergencia</th>
-                <th>Enfermedad</th>
-                <th>Ocupacion</th>
-                <th>Acciones</th>
+                <th>Descripcion</th>
+                <th>Valor</th>
+                <th>Acciones</th>              
             </tr>
         </thead>
         <tbody>
             <?php
-            if (isset($data['clients'])) {
-                foreach ($data['clients'] as $client) {
+            if (isset($data['debts'])) {
+                foreach ($data['debts'] as $debt) {
                     ?>
-                    <tr>
-                        <td><strong><?php echo $client->client_id ?></strong></td>
-                        <td><strong><?php echo $client->name ?></strong></td>
-                        <td><strong><?php echo $client->surname ?></strong></td>
-                        <td><strong><?php echo $client->ci ?></strong></td>
-                        <td><strong><?php if(!empty($client->birth)){echo date('d-m-Y',  strtotime($client->birth));} ?></strong></td>
-                        <td><strong><?php echo $client->address ?></strong></td>
-                        <td><strong><?php echo $client->phone ?></strong></td>
-                        <td><strong><?php echo $client->mail ?></strong></td>
-                        <td><strong><?php echo $client->emergency ?></strong></td>
-                        <td><strong><?php echo $client->disease ?></strong></td>
-                        <td><strong><?php echo $client->ocupation ?></strong></td>
+                    <tr>                        
+                        <td><strong><?php echo $debt->name ?></strong></td>
+                        <td><strong><?php echo $debt->surname ?></strong></td>
+                        <td><strong><?php echo $debt->ci ?></strong></td>
+                        <td><strong><?php echo $debt->description ?></strong></td>
+                        <td><strong>$<?php echo $debt->value ?></strong></td>                        
                         <td>
-                            <a class="btn btn-primary btn-mini span2" href="<?php echo base_url('clients/update?client_id=') . $client->client_id ?>"><i class="icon-info-sign  icon-white"></i> Ver Info</a>
-                            <a class="btn btn-danger btn-mini span3" onclick="sendId(<?php echo $client->client_id ?>)"><i class="icon-download icon-white"></i> Dar de baja</a>                            
+                            <a class="btn btn-primary btn-mini" href="<?php echo base_url('debts/update?debt_id=') . $debt->debt_id ?> "><i class="icon-edit  icon-white"></i> Editar</a>
+                            <a class="btn btn-danger btn-mini" onclick="sendId(<?php echo $debt->debt_id ?>)"><i class="icon-remove icon-white"></i> Eliminar</a>                            
                         </td>                                                
                     </tr>
                 <?php }
@@ -175,7 +156,7 @@
         <h3>Mensaje</h3>
     </div>
     <div class="modal-body">
-        <p>¿Está seguro que desea eliminar el cliente?</p>
+        <p>¿Está seguro que desea eliminar la deuda?</p>
     </div>
     <div id="modal-footer" class="modal-footer">        
     </div>

@@ -137,6 +137,7 @@
                 <th>Telefono</th>
                 <th>Mail</th>
                 <th>Emergencia</th>
+                <th>Enfermedad</th>
                 <th>Ocupacion</th>
                 <th>Acciones</th>
             </tr>
@@ -156,6 +157,7 @@
                         <td><strong><?php echo $client->phone ?></strong></td>
                         <td><strong><?php echo $client->mail ?></strong></td>
                         <td><strong><?php echo $client->emergency ?></strong></td>
+                        <td><strong><?php echo $client->disease ?></strong></td>
                         <td><strong><?php echo $client->ocupation ?></strong></td>
                         <td>
                             <a class="btn btn-primary btn-mini span2" href="<?php echo base_url('clients/update?client_id=') . $client->client_id ?>"><i class="icon-info-sign  icon-white"></i> Ver Info</a>
@@ -173,7 +175,7 @@
         <h3>Mensaje</h3>
     </div>
     <div class="modal-body">
-        <p>¿Está seguro que desea eliminar el cliente?</p>
+        <p>¿Está seguro que desea dar de baja el cliente?</p>
     </div>
     <div id="modal-footer" class="modal-footer">        
     </div>

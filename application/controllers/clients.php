@@ -34,6 +34,7 @@ class Clients extends MY_Controller {
                 $data['phone'] = $_POST['phone'];
                 $data['mail'] = $_POST['mail'];
                 $data['emergency'] = $_POST['emergency'];
+                $data['disease'] = $_POST['disease'];
                 $data['ocupation'] = $_POST['ocupation'];
 
                 if ($_FILES['photo']['name']) {
@@ -133,6 +134,7 @@ class Clients extends MY_Controller {
                 $data['phone'] = $_POST['phone'];
                 $data['mail'] = $_POST['mail'];
                 $data['emergency'] = $_POST['emergency'];
+                $data['disease'] = $_POST['disease'];
                 $data['ocupation'] = $_POST['ocupation'];
                 $data['active'] = $_POST['active'];
 

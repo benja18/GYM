@@ -21,6 +21,7 @@ class Client extends CI_Model {
         $this->db->set('phone', $data['phone']);
         $this->db->set('mail', $data['mail']);
         $this->db->set('emergency', $data['emergency']);
+        $this->db->set('disease', $data['disease']);
         $this->db->set('ocupation', $data['ocupation']);
         $this->db->set('active', 1);
         $this->db->set('photo', $data['photo']);
@@ -58,13 +59,13 @@ class Client extends CI_Model {
     }
     
     function getActiveClients() {
-        $sql = 'SELECT client_id, name, surname, ci, birth, address, phone, mail, emergency, ocupation FROM clients WHERE active = 1';
+        $sql = 'SELECT client_id, name, surname, ci, birth, address, phone, mail, emergency, disease, ocupation FROM clients WHERE active = 1';
         $query = $this->db->query($sql);
         return $query->result();
     }
     
     function getInactiveClients() {
-        $sql = 'SELECT client_id, name, surname, ci, birth, address, phone, mail, emergency, ocupation FROM clients WHERE active = 0';
+        $sql = 'SELECT client_id, name, surname, ci, birth, address, phone, mail, emergency, disease, ocupation FROM clients WHERE active = 0';
         $query = $this->db->query($sql);
         return $query->result();
     }
