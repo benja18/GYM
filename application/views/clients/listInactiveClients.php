@@ -110,7 +110,7 @@
 </script>
 <script type="text/javascript">
     function sendId(client_id) {
-        document.getElementById('modal-footer').innerHTML = "<a href=\"<?php echo base_url('clients/setClientInactive?client_id=') ?>" + client_id + "\" class=\"btn btn-primary\">Si</a><a class=\"btn\" data-dismiss=\"modal\">No</a>"
+        document.getElementById('modal-footer').innerHTML = "<a href=\"<?php echo base_url('clients/delete?client_id=') ?>" + client_id + "\" class=\"btn btn-primary\">Si</a><a class=\"btn\" data-dismiss=\"modal\">No</a>"
 
         $('#modal-delete').modal("show");
     }
@@ -168,8 +168,8 @@
                         <td><strong><?php echo $client->ocupation ?></strong></td>
                         <td>
                             <a class="btn btn-primary btn-mini span2" href="<?php echo base_url('clients/update?client_id=') . $client->client_id ?>"><i class="icon-info-sign  icon-white"></i> Ver Info</a>
-                            <a class="btn btn-success btn-mini span3" onclick="sendId2(<?php echo $client->client_id ?>)"><i class="icon-download icon-white"></i> Dar de alta</a>
-                            <a class="btn btn-danger btn-mini span3" onclick="sendId(<?php echo $client->client_id ?>)"><i class="icon-download icon-white"></i> Dar de baja</a>                            
+                            <a class="btn btn-success btn-mini span3" onclick="sendId2(<?php echo $client->client_id ?>)"><i class="icon-plus-sign icon-white"></i> Dar de alta</a>
+                            <a class="btn btn-danger btn-mini span3" onclick="sendId(<?php echo $client->client_id ?>)"><i class="icon-download icon-white"></i> Eliminar</a>                            
                         </td>                                                
                     </tr>
                 <?php }
@@ -184,6 +184,18 @@
     </div>
     <div class="modal-body">
         <p>¿Está seguro que desea dar de alta el cliente?</p>
+    </div>
+    <div id="modal-footer" class="modal-footer">        
+    </div>
+</div>
+
+<div class="modal hide" id="modal-active">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>Mensaje</h3>
+    </div>
+    <div class="modal-body">
+        <p>¿Está seguro que desea eliminar el cliente?</p>
     </div>
     <div id="modal-footer" class="modal-footer">        
     </div>

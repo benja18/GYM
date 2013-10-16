@@ -221,12 +221,12 @@ class Clients extends MY_Controller {
             $data['status'] = 'CantDelete';
         }
 
-        $clients = $this->client->getData();
+        $clients = $this->client->getInactiveClients();
 
         $data['clients'] = $clients;
 
         $this->load->view('templates/header', array('data' => $this->data));
-        $this->load->view('clients/listClients', array('data' => $data));
+        $this->load->view('clients/listInactiveClients', array('data' => $data));
         $this->load->view('templates/footer');
     }
 
