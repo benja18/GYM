@@ -40,5 +40,12 @@ class Debt extends CI_Model {
         $query = $this->db->get('debts');
         $expense = $query->result_array();
         return $expense[0];
-    }    
+    }
+    
+    function getDebtsCount() {
+        $sql = 'SELECT COUNT(*) as count FROM debts';
+        $query = $this->db->query($sql);
+        $count = $query->result_array();
+        return $count['0']['count'];
+    }
 }

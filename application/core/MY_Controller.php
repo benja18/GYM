@@ -23,6 +23,8 @@ class MY_Controller extends CI_Controller {
     
     $this->load->model('client');
     $this->data['clientsBirths'] = $this->client->getBirthsCount();
+    $this->load->model('debt');
+    $this->data['debtsCount'] = $this->debt->getDebtsCount();
     
     
   }

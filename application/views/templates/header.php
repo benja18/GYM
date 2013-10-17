@@ -36,7 +36,8 @@ if (!$this->session->userdata('logged_in')) {
                             <li><a href="<?php echo base_url('subscriptions/listNextExpirations') ?>"><span class="badge badge-warning"><?php echo $data['nextExpirationsCounter']; ?></span> Proximos vencimientos</a></li>
                             <li><a href="<?php echo base_url('subscriptions/listExpired') ?>"><span class="badge badge-important"><?php echo $data['expiredClientsCount']; ?></span> Socios a renovar</a></li>
                             <li><a href="<?php echo base_url('subscriptions/listSubscriptionsUnpaid') ?>"><span class="badge badge-inverse"><?php echo $data['unpaidSubscriptionsCounter']; ?></span> Subscripciones sin pagar</a></li>
-                            <li><a href="<?php echo base_url('clients/listBirths') ?>"><span class="badge badge-info"><?php echo $data['clientsBirths']; ?></span> Cumpleaños</a></li>                            
+                            <li><a href="<?php echo base_url('debts/listDebts') ?>"><span class="badge badge-info"><?php echo $data['debtsCount']; ?></span> Deudas</a></li>
+                            <li><a href="<?php echo base_url('clients/listBirths') ?>"><span class="badge badge-success"><?php echo $data['clientsBirths']; ?></span> Cumpleaños</a></li>
                             <li><a href="<?php echo base_url('subscriptions/findSubscriptions') ?>"><i class="icon-search"></i> Buscar subscripciones</a></li>                            
                         </ul>
                     </li>
