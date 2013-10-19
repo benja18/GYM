@@ -10,6 +10,7 @@ UPDATE clients set active = 1;
 ALTER TABLE  `clients` ADD  `photo` VARCHAR( 512 ) NOT NULL AFTER  `active` ;
 UPDATE clients set photo = 'empty.jpg'
 
+ALTER TABLE  `clients` ADD  `emergency` VARCHAR( 45 ) NOT NULL AFTER  `ocupation` ;
 ALTER TABLE  `clients` ADD  `disease` VARCHAR( 45 ) NOT NULL AFTER  `emergency` ;
 
 CREATE TABLE IF NOT EXISTS `gym`.`debts` (

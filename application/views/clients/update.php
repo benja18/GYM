@@ -40,7 +40,7 @@
         ?>
         <?php echo form_open('clients/update', $attributes); ?>
         <legend>Editar Socio</legend>
-        <center ><img style="width: 150px;height: 192px;"src="<?php if ($data['status'] != 'ClientUpdated') {echo base_url('assets/photos').'/'.$data['photo']; }?>"></center>
+        <center ><img style="width: 192px;height: 192px;"src="<?php if ($data['status'] != 'ClientUpdated') {echo base_url('assets/photos').'/'.$data['photo']; }?>"></center>
         <br><br>
         <input name="client_id" type="text" readonly="true" value="<?php if ($data['status'] == '') {echo $_GET['client_id']; } elseif($data['status'] != 'ClientUpdated'){ echo $data['client_id']; }?>">        
         <input name="name" type="text" placeholder="Nombre" value="<?php if ($data['status'] != 'ClientUpdated') {echo $data['name']; }?>">
